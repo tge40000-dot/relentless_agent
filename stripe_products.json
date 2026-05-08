@@ -1,0 +1,66 @@
+{
+  "price_map": {
+    "svc-lead-gen": "price_1TMoWqB7eDnuwXUASHwwrRjs",
+    "svc-flyer": "price_1TMoWrB7eDnuwXUAerMVSizK",
+    "svc-outreach": "price_1TMoWsB7eDnuwXUAnGa2y9LA",
+    "svc-consulting": "price_1TMoWuB7eDnuwXUAvH8PC3i8",
+    "tier-starter": "price_1TMoWvB7eDnuwXUAnf6oSCC8",
+    "tier-pro": "price_1TMoWwB7eDnuwXUAZaVmUyVc",
+    "tier-elite": "price_1TMoWwB7eDnuwXUAHUaYdPpY"
+  },
+  "products": [
+    {
+      "worker_key": "svc-lead-gen",
+      "name": "AI Lead Generation",
+      "price_usd": 500.0,
+      "product_id": "prod_ULVX2yJKTYvOuM",
+      "price_id": "price_1TMoWqB7eDnuwXUASHwwrRjs",
+      "payment_link": "https://buy.stripe.com/28E3cu9bveDQcn34Df6oo02"
+    },
+    {
+      "worker_key": "svc-flyer",
+      "name": "Custom Event Flyer Design",
+      "price_usd": 200.0,
+      "product_id": "prod_ULVXFSwGzKLVdX",
+      "price_id": "price_1TMoWrB7eDnuwXUAerMVSizK",
+      "payment_link": "https://buy.stripe.com/cNi28q9bv9jwbiZ0mZ6oo03"
+    },
+    {
+      "worker_key": "svc-outreach",
+      "name": "Targeted Outreach Campaign",
+      "price_usd": 1000.0,
+      "product_id": "prod_ULVXbIAP7y2GNL",
+      "price_id": "price_1TMoWsB7eDnuwXUAnGa2y9LA",
+      "payment_link": "https://buy.stripe.com/28E14mcnHfHUaeVedP6oo04"
+    },
+    {
+      "worker_key": "svc-consulting",
+      "name": "1-on-1 Business Consulting",
+      "price_usd": 2000.0,
+      "product_id": "prod_ULVXCNGTaD4w8y",
+      "price_id": "price_1TMoWuB7eDnuwXUAvH8PC3i8",
+      "payment_link": "https://buy.stripe.com/5kQaEW0EZ9jw86Nb1D6oo05"
+    },
+    {
+      "worker_key": "tier-starter",
+      "name": "STARTER Membership",
+      "price_usd": 49.0,
+      "product_id": "prod_ULVYHmHIW5VkJX",
+      "price_id": "price_1TMoWvB7eDnuwXUAnf6oSCC8"
+    },
+    {
+      "worker_key": "tier-pro",
+      "name": "PRO Membership",
+      "price_usd": 199.0,
+      "product_id": "prod_ULVYHygDZ0IFv3",
+      "price_id": "price_1TMoWwB7eDnuwXUAZaVmUyVc"
+    },
+    {
+      "worker_key": "tier-elite",
+      "name": "ELITE Membership",
+      "price_usd": 499.0,
+      "product_id": "prod_ULVYfU0XqOKijB",
+      "price_id": "price_1TMoWwB7eDnuwXUAHUaYdPpY"
+    }
+  ]
+}

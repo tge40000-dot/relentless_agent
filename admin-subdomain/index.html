@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relentless Billionaire Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#D4AF37',
+                        gray: '#1a1a1a',
+                        dim: '#999999'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #000; color: #fdf7e3; }
+        .bg-gray { background: #1a1a1a; }
+        .text-gold { color: #D4AF37; }
+        .border-gray-800 { border-color: #333; }
+        .hover\:bg-gray-800:hover { background: #333; }
+        .text-dim { color: #999999; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="loginScreen" class="flex items-center justify-center h-screen bg-black">
+            <div class="bg-gray p-8 rounded w-96 border border-gray-800">
+                <h1 class="text-gold text-3xl font-bold mb-6 text-center">Admin Login</h1>
+                <div id="loginError" class="bg-red-900 text-red-200 p-3 rounded mb-4 text-sm hidden"></div>
+                <form id="loginForm">
+                    <input id="adminKey" class="w-full mb-4 p-3 bg-black border border-gray-700 rounded text-white" placeholder="Admin Key" type="password" required>
+                    <button type="submit" class="w-full bg-gold text-black p-3 rounded font-bold hover:bg-yellow-400">Enter Admin Dashboard</button>
+                </form>
+                <div class="mt-4 text-center">
+                    <a href="https://relentlessbillionaire.com" class="text-dim hover:text-gold text-sm">Back to Main Site</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="dashboardScreen" class="hidden min-h-screen bg-black">
+            <!-- Header -->
+            <header class="bg-gray border-b border-gray-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16 items-center">
+                        <div class="flex items-center space-x-4">
+                            <h1 class="text-xl font-bold text-gold">Relentless Billionaire Admin</h1>
+                            <span class="text-dim text-sm">FL Studio Control Center</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button id="syncBtn" class="text-dim hover:text-white">Sync All</button>
+                            <button id="backupBtn" class="text-dim hover:text-white">Backup</button>
+                            <button id="logoutBtn" class="text-dim hover:text-white">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex">
+                <!-- Sidebar -->
+                <aside class="w-64 bg-gray border-r border-gray-800 min-h-screen">
+                    <nav class="mt-4">
+                        <div class="px-4 py-2 text-xs uppercase text-dim tracking-wider">Content Controls</div>
+                        <a href="#" onclick="showSection('artists')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Artists</a>
+                        <a href="#" onclick="showSection('events')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Events</a>
+                        <a href="#" onclick="showSection('services')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Services</a>
+                        <a href="#" onclick="showSection('vendors')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Vendors</a>
+                        <a href="#" onclick="showSection('memberships')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Memberships</a>
+                        <a href="#" onclick="showSection('bookings')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Bookings</a>
+                        
+                        <div class="px-4 py-2 mt-4 text-xs uppercase text-dim tracking-wider">System Controls</div>
+                        <a href="#" onclick="showSection('payments')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Payments</a>
+                        <a href="#" onclick="showSection('sms')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">SMS</a>
+                        <a href="#" onclick="showSection('email')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Email</a>
+                        <a href="#" onclick="showSection('settings')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Site Settings</a>
+                        
+                        <div class="px-4 py-2 mt-4 text-xs uppercase text-dim tracking-wider">Design Controls</div>
+                        <a href="#" onclick="showSection('theme')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Theme</a>
+                        <a href="#" onclick="showSection('typography')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Typography</a>
+                        <a href="#" onclick="showSection('branding')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Branding</a>
+                        <a href="#" onclick="showSection('social')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Social Links</a>
+                        
+                        <div class="px-4 py-2 mt-4 text-xs uppercase text-dim tracking-wider">Analytics</div>
+                        <a href="#" onclick="showSection('analytics')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">Revenue</a>
+                        <a href="#" onclick="showSection('system')" class="block px-4 py-2 text-dim hover:text-gold hover:bg-gray-800">System Health</a>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="flex-1 p-8">
+                    <div id="contentArea">
+                        <!-- Dashboard Overview -->
+                        <div id="dashboard" class="section">
+                            <h2 class="text-2xl font-bold text-gold mb-6">Dashboard Overview</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                                <div class="bg-gray p-6 rounded border border-gray-800">
+                                    <h3 class="text-gold text-lg font-semibold mb-2">Total Revenue</h3>
+                                    <p class="text-2xl font-bold" id="totalRevenue">$0</p>
+                                    <p class="text-dim text-sm">This month</p>
+                                </div>
+                                <div class="bg-gray p-6 rounded border border-gray-800">
+                                    <h3 class="text-gold text-lg font-semibold mb-2">Active Members</h3>
+                                    <p class="text-2xl font-bold" id="activeMembers">0</p>
+                                    <p class="text-dim text-sm">Across all tiers</p>
+                                </div>
+                                <div class="bg-gray p-6 rounded border border-gray-800">
+                                    <h3 class="text-gold text-lg font-semibold mb-2">Total Bookings</h3>
+                                    <p class="text-2xl font-bold" id="totalBookings">0</p>
+                                    <p class="text-dim text-sm">All time</p>
+                                </div>
+                                <div class="bg-gray p-6 rounded border border-gray-800">
+                                    <h3 class="text-gold text-lg font-semibold mb-2">System Status</h3>
+                                    <p class="text-2xl font-bold text-green-400">Online</p>
+                                    <p class="text-dim text-sm">All systems operational</p>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div class="bg-gray p-6 rounded border border-gray-800">
+                                    <h3 class="text-gold text-lg font-semibold mb-4">Quick Actions</h3>
+                                    <div class="space-y-2">
+                                        <button onclick="quickAdd('artist')" class="w-full bg-gold text-black p-2 rounded hover:bg-yellow-400">Add Artist</button>
+                                        <button onclick="quickAdd('event')" class="w-full bg-gold text-black p-2 rounded hover:bg-yellow-400">Add Event</button>
+                                        <button onclick="quickAdd('service')" class="w-full bg-gold text-black p-2 rounded hover:bg-yellow-400">Add Service</button>
+                                        <button onclick="quickAdd('vendor')" class="w-full bg-gold text-black p-2 rounded hover:bg-yellow-400">Add Vendor</button>
+                                    </div>
+                                </div>
+                                <div class="bg-gray p-6 rounded border border-gray-800">
+                                    <h3 class="text-gold text-lg font-semibold mb-4">System Controls</h3>
+                                    <div class="space-y-2">
+                                        <button onclick="fullBackup()" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Full Backup</button>
+                                        <button onclick="syncAll()" class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700">Sync All Data</button>
+                                        <button onclick="clearCache()" class="w-full bg-red-600 text-white p-2 rounded hover:bg-red-700">Clear Cache</button>
+                                        <button onclick="exportData()" class="w-full bg-purple-600 text-white p-2 rounded hover:bg-purple-700">Export All Data</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global API Client
+        const ADMIN_KEY = localStorage.getItem('rb_admin_key') || '';
+        const API_BASE = 'https://relentlessbillionaire.com';
+        
+        async function api(path, method = 'GET', body = null) {
+            const res = await fetch(`${API_BASE}${path}`, {
+                method,
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-Admin-Key': ADMIN_KEY
+                },
+                body: body ? JSON.stringify(body) : null
+            });
+            return res.json();
+        }
+
+        // Login Handler
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const key = document.getElementById('adminKey').value;
+            
+            try {
+                const test = await api('/api/health');
+                if (test.status === 'ok') {
+                    localStorage.setItem('rb_admin_key', key);
+                    document.getElementById('loginScreen').classList.add('hidden');
+                    document.getElementById('dashboardScreen').classList.remove('hidden');
+                    loadDashboardData();
+                }
+            } catch (err) {
+                document.getElementById('loginError').textContent = 'Invalid admin key';
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        });
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('rb_admin_key');
+            location.reload();
+        });
+
+        // Section Navigation
+        function showSection(sectionName) {
+            loadSection(sectionName);
+        }
+
+        // Load Dashboard Data
+        async function loadDashboardData() {
+            try {
+                // Load revenue
+                const revenue = await api('/api/revenue');
+                document.getElementById('totalRevenue').textContent = `$${(revenue.total_revenue || 0).toLocaleString()}`;
+                
+                // Load counts
+                const artists = await api('/api/content/artists');
+                const bookings = await api('/api/orders');
+                const customers = await api('/api/customers');
+                
+                document.getElementById('activeMembers').textContent = customers.filter(c => c.membership).length;
+                document.getElementById('totalBookings').textContent = bookings.length;
+            } catch (err) {
+                console.error('Error loading dashboard:', err);
+            }
+        }
+
+        // Quick Actions
+        function quickAdd(type) {
+            const name = prompt(`Enter ${type} name:`);
+            if (name) {
+                api(`/api/content/${type}`, 'POST', [{
+                    id: `${type}_${Date.now()}`,
+                    name,
+                    createdAt: new Date().toISOString()
+                }]).then(() => {
+                    alert(`${type} added successfully!`);
+                    loadDashboardData();
+                });
+            }
+        }
+
+        // System Controls
+        async function fullBackup() {
+            if (!confirm('Create full backup of all data?')) return;
+            
+            const allData = {};
+            const collections = ['artists', 'events', 'services', 'vendors', 'memberships', 'bookings', 'settings'];
+            
+            for (const col of collections) {
+                allData[col] = await api(`/api/content/${col}`);
+            }
+            
+            const backup = {
+                id: `backup_${Date.now()}`,
+                data: allData,
+                createdAt: new Date().toISOString()
+            };
+            
+            localStorage.setItem('rb_latest_backup', JSON.stringify(backup));
+            alert('Backup created successfully!');
+        }
+
+        async function syncAll() {
+            alert('Syncing all data...');
+            // Implementation would sync all KV data
+        }
+
+        async function clearCache() {
+            localStorage.clear();
+            alert('Cache cleared!');
+            location.reload();
+        }
+
+        async function exportData() {
+            const data = await api('/api/content/artists');
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'relentless_data_export.json';
+            a.click();
+        }
+
+        // Load Section Content
+        async function loadSection(sectionName) {
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = '<div class="text-center py-8"><p class="text-dim">Loading...</p></div>';
+            
+            // Dynamic section loading would go here
+            setTimeout(() => {
+                contentArea.innerHTML = `
+                    <div class="section" id="${sectionName}">
+                        <h2 class="text-2xl font-bold text-gold mb-6">${sectionName.charAt(0).toUpperCase() + sectionName.slice(1)} Management</h2>
+                        <div class="bg-gray p-6 rounded border border-gray-800">
+                            <p class="text-dim">${sectionName} management interface would be loaded here.</p>
+                        </div>
+                    </div>
+                `;
+            }, 500);
+        }
+
+        // Auto-login if key exists
+        if (ADMIN_KEY) {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('dashboardScreen').classList.remove('hidden');
+            loadDashboardData();
+        }
+    </script>
+</body>
+</html>

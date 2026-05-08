@@ -1,0 +1,1450 @@
+[
+  {
+    "timestamp": "2026-04-15T13:16:36.817888",
+    "pipeline_stages": {
+      "lead": 0,
+      "outreach": 0,
+      "follow_up": 0,
+      "proposal": 0,
+      "closed": 0,
+      "lost": 0
+    },
+    "conversion_rates": {
+      "lead_to_outreach": 0.0,
+      "outreach_to_proposal": 0.0,
+      "proposal_to_close": 0.0,
+      "overall_win_rate": 0.0
+    },
+    "by_source": [],
+    "by_tier": {},
+    "by_industry": {},
+    "avg_days_to_close": 0,
+    "total_pipeline_value": 0,
+    "total_active": 0,
+    "sales_stats": {
+      "leads_found": 0,
+      "outreach_sent": 0,
+      "deals_closed": 0,
+      "revenue": 0,
+      "reactivated": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-15T13:41:09.506226",
+    "pipeline_stages": {
+      "lead": 50,
+      "outreach": 0,
+      "follow_up": 0,
+      "proposal": 0,
+      "closed": 0,
+      "lost": 0
+    },
+    "conversion_rates": {
+      "lead_to_outreach": 0.0,
+      "outreach_to_proposal": 0.0,
+      "proposal_to_close": 0.0,
+      "overall_win_rate": 0.0
+    },
+    "by_source": [
+      {
+        "source": "linkedin",
+        "leads": 10,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "crunchbase",
+        "leads": 10,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "yelp",
+        "leads": 8,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "github",
+        "leads": 10,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "industry_directory",
+        "leads": 8,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "clutch",
+        "leads": 4,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      }
+    ],
+    "by_tier": {
+      "Cold": 50
+    },
+    "by_industry": {
+      "Artificial Intelligence": {
+        "total": 5,
+        "closed": 0
+      },
+      "Cybersecurity": {
+        "total": 5,
+        "closed": 0
+      },
+      "Data Analytics": {
+        "total": 5,
+        "closed": 0
+      },
+      "Cloud Computing": {
+        "total": 4,
+        "closed": 0
+      },
+      "Internet of Things": {
+        "total": 4,
+        "closed": 0
+      },
+      "Software Development": {
+        "total": 5,
+        "closed": 0
+      },
+      "IT Services": {
+        "total": 1,
+        "closed": 0
+      },
+      "Venture Capital": {
+        "total": 1,
+        "closed": 0
+      },
+      "Network Security": {
+        "total": 2,
+        "closed": 0
+      },
+      "Digital Marketing": {
+        "total": 3,
+        "closed": 0
+      },
+      "Machine Learning": {
+        "total": 1,
+        "closed": 0
+      },
+      "Blockchain Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Mobile App Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Blockchain": {
+        "total": 1,
+        "closed": 0
+      },
+      "Technology": {
+        "total": 10,
+        "closed": 0
+      },
+      "E-commerce Solutions": {
+        "total": 1,
+        "closed": 0
+      }
+    },
+    "avg_days_to_close": 0,
+    "total_pipeline_value": 0,
+    "total_active": 50,
+    "sales_stats": {
+      "leads_found": 50,
+      "outreach_sent": 0,
+      "deals_closed": 0,
+      "revenue": 0,
+      "reactivated": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-15T13:44:00.363663",
+    "pipeline_stages": {
+      "lead": 67,
+      "outreach": 10,
+      "follow_up": 9,
+      "proposal": 0,
+      "closed": 1,
+      "lost": 0
+    },
+    "conversion_rates": {
+      "lead_to_outreach": 22.988505747126435,
+      "outreach_to_proposal": 5.0,
+      "proposal_to_close": 100.0,
+      "overall_win_rate": 1.1494252873563218
+    },
+    "by_source": [
+      {
+        "source": "linkedin",
+        "leads": 20,
+        "closed": 1,
+        "lost": 0,
+        "revenue": 997,
+        "win_rate": 5.0
+      },
+      {
+        "source": "crunchbase",
+        "leads": 19,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "yelp",
+        "leads": 16,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "github",
+        "leads": 10,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "industry_directory",
+        "leads": 14,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "clutch",
+        "leads": 8,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      }
+    ],
+    "by_tier": {
+      "Cold": 50,
+      "Hot": 26,
+      "Warm": 11
+    },
+    "by_industry": {
+      "Artificial Intelligence": {
+        "total": 9,
+        "closed": 0
+      },
+      "Cybersecurity": {
+        "total": 9,
+        "closed": 0
+      },
+      "Data Analytics": {
+        "total": 10,
+        "closed": 0
+      },
+      "Cloud Computing": {
+        "total": 6,
+        "closed": 0
+      },
+      "Internet of Things": {
+        "total": 8,
+        "closed": 0
+      },
+      "Software Development": {
+        "total": 8,
+        "closed": 0
+      },
+      "IT Services": {
+        "total": 2,
+        "closed": 0
+      },
+      "Venture Capital": {
+        "total": 1,
+        "closed": 0
+      },
+      "Network Security": {
+        "total": 3,
+        "closed": 1
+      },
+      "Digital Marketing": {
+        "total": 5,
+        "closed": 0
+      },
+      "Machine Learning": {
+        "total": 3,
+        "closed": 0
+      },
+      "Blockchain Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Mobile App Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Blockchain": {
+        "total": 5,
+        "closed": 0
+      },
+      "Technology": {
+        "total": 10,
+        "closed": 0
+      },
+      "E-commerce Solutions": {
+        "total": 1,
+        "closed": 0
+      },
+      "Digital Media": {
+        "total": 1,
+        "closed": 0
+      },
+      "Data Science": {
+        "total": 1,
+        "closed": 0
+      },
+      "Virtual Reality": {
+        "total": 3,
+        "closed": 0
+      }
+    },
+    "avg_days_to_close": 0.0,
+    "total_pipeline_value": 997,
+    "total_active": 87,
+    "sales_stats": {
+      "leads_found": 50,
+      "outreach_sent": 30,
+      "deals_closed": 1,
+      "revenue": 997,
+      "reactivated": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-15T13:46:53.637563",
+    "pipeline_stages": {
+      "lead": 78,
+      "outreach": 20,
+      "follow_up": 17,
+      "proposal": 0,
+      "closed": 3,
+      "lost": 0
+    },
+    "conversion_rates": {
+      "lead_to_outreach": 33.89830508474576,
+      "outreach_to_proposal": 7.5,
+      "proposal_to_close": 100.0,
+      "overall_win_rate": 2.5423728813559325
+    },
+    "by_source": [
+      {
+        "source": "linkedin",
+        "leads": 27,
+        "closed": 3,
+        "lost": 0,
+        "revenue": 2991,
+        "win_rate": 11.1
+      },
+      {
+        "source": "crunchbase",
+        "leads": 25,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "yelp",
+        "leads": 23,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "github",
+        "leads": 10,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "industry_directory",
+        "leads": 22,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "clutch",
+        "leads": 11,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      }
+    ],
+    "by_tier": {
+      "Cold": 50,
+      "Hot": 52,
+      "Warm": 16
+    },
+    "by_industry": {
+      "Artificial Intelligence": {
+        "total": 12,
+        "closed": 1
+      },
+      "Cybersecurity": {
+        "total": 14,
+        "closed": 0
+      },
+      "Data Analytics": {
+        "total": 14,
+        "closed": 0
+      },
+      "Cloud Computing": {
+        "total": 8,
+        "closed": 0
+      },
+      "Internet of Things": {
+        "total": 10,
+        "closed": 0
+      },
+      "Software Development": {
+        "total": 12,
+        "closed": 0
+      },
+      "IT Services": {
+        "total": 3,
+        "closed": 0
+      },
+      "Venture Capital": {
+        "total": 1,
+        "closed": 0
+      },
+      "Network Security": {
+        "total": 3,
+        "closed": 1
+      },
+      "Digital Marketing": {
+        "total": 7,
+        "closed": 0
+      },
+      "Machine Learning": {
+        "total": 3,
+        "closed": 0
+      },
+      "Blockchain Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Mobile App Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Blockchain": {
+        "total": 7,
+        "closed": 0
+      },
+      "Technology": {
+        "total": 10,
+        "closed": 0
+      },
+      "E-commerce Solutions": {
+        "total": 2,
+        "closed": 0
+      },
+      "Digital Media": {
+        "total": 3,
+        "closed": 1
+      },
+      "Data Science": {
+        "total": 2,
+        "closed": 0
+      },
+      "Virtual Reality": {
+        "total": 3,
+        "closed": 0
+      },
+      "Technology Consulting": {
+        "total": 1,
+        "closed": 0
+      },
+      "Renewable Energy": {
+        "total": 1,
+        "closed": 0
+      }
+    },
+    "avg_days_to_close": 0.0,
+    "total_pipeline_value": 2991,
+    "total_active": 118,
+    "sales_stats": {
+      "leads_found": 50,
+      "outreach_sent": 30,
+      "deals_closed": 2,
+      "revenue": 1994,
+      "reactivated": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-15T13:53:42.399729",
+    "pipeline_stages": {
+      "lead": 78,
+      "outreach": 30,
+      "follow_up": 26,
+      "proposal": 0,
+      "closed": 4,
+      "lost": 0
+    },
+    "conversion_rates": {
+      "lead_to_outreach": 43.47826086956522,
+      "outreach_to_proposal": 6.666666666666667,
+      "proposal_to_close": 100.0,
+      "overall_win_rate": 2.898550724637681
+    },
+    "by_source": [
+      {
+        "source": "linkedin",
+        "leads": 30,
+        "closed": 4,
+        "lost": 0,
+        "revenue": 3988,
+        "win_rate": 13.3
+      },
+      {
+        "source": "crunchbase",
+        "leads": 27,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "yelp",
+        "leads": 29,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "github",
+        "leads": 10,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "industry_directory",
+        "leads": 22,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "clutch",
+        "leads": 11,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "referral",
+        "leads": 6,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "google_business",
+        "leads": 3,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      }
+    ],
+    "by_tier": {
+      "Cold": 52,
+      "Hot": 58,
+      "Warm": 28
+    },
+    "by_industry": {
+      "Artificial Intelligence": {
+        "total": 12,
+        "closed": 1
+      },
+      "Cybersecurity": {
+        "total": 14,
+        "closed": 0
+      },
+      "Data Analytics": {
+        "total": 14,
+        "closed": 0
+      },
+      "Cloud Computing": {
+        "total": 8,
+        "closed": 0
+      },
+      "Internet of Things": {
+        "total": 10,
+        "closed": 0
+      },
+      "Software Development": {
+        "total": 12,
+        "closed": 0
+      },
+      "IT Services": {
+        "total": 3,
+        "closed": 0
+      },
+      "Venture Capital": {
+        "total": 1,
+        "closed": 0
+      },
+      "Network Security": {
+        "total": 3,
+        "closed": 1
+      },
+      "Digital Marketing": {
+        "total": 7,
+        "closed": 1
+      },
+      "Machine Learning": {
+        "total": 3,
+        "closed": 0
+      },
+      "Blockchain Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Mobile App Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Blockchain": {
+        "total": 7,
+        "closed": 0
+      },
+      "Technology": {
+        "total": 30,
+        "closed": 0
+      },
+      "E-commerce Solutions": {
+        "total": 2,
+        "closed": 0
+      },
+      "Digital Media": {
+        "total": 3,
+        "closed": 1
+      },
+      "Data Science": {
+        "total": 2,
+        "closed": 0
+      },
+      "Virtual Reality": {
+        "total": 3,
+        "closed": 0
+      },
+      "Technology Consulting": {
+        "total": 1,
+        "closed": 0
+      },
+      "Renewable Energy": {
+        "total": 1,
+        "closed": 0
+      }
+    },
+    "avg_days_to_close": 0.0,
+    "total_pipeline_value": 3988,
+    "total_active": 138,
+    "sales_stats": {
+      "leads_found": 20,
+      "outreach_sent": 30,
+      "deals_closed": 1,
+      "revenue": 997,
+      "reactivated": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-15T13:54:22.534955",
+    "pipeline_stages": {
+      "lead": 74,
+      "outreach": 40,
+      "follow_up": 33,
+      "proposal": 0,
+      "closed": 7,
+      "lost": 0
+    },
+    "conversion_rates": {
+      "lead_to_outreach": 51.94805194805194,
+      "outreach_to_proposal": 8.75,
+      "proposal_to_close": 100.0,
+      "overall_win_rate": 4.545454545454546
+    },
+    "by_source": [
+      {
+        "source": "linkedin",
+        "leads": 37,
+        "closed": 4,
+        "lost": 0,
+        "revenue": 3988,
+        "win_rate": 10.8
+      },
+      {
+        "source": "crunchbase",
+        "leads": 29,
+        "closed": 1,
+        "lost": 0,
+        "revenue": 997,
+        "win_rate": 3.4
+      },
+      {
+        "source": "yelp",
+        "leads": 32,
+        "closed": 1,
+        "lost": 0,
+        "revenue": 997,
+        "win_rate": 3.1
+      },
+      {
+        "source": "clutch",
+        "leads": 11,
+        "closed": 1,
+        "lost": 0,
+        "revenue": 997,
+        "win_rate": 9.1
+      },
+      {
+        "source": "github",
+        "leads": 10,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "industry_directory",
+        "leads": 22,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "referral",
+        "leads": 8,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "google_business",
+        "leads": 5,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      }
+    ],
+    "by_tier": {
+      "Cold": 52,
+      "Hot": 59,
+      "Warm": 43
+    },
+    "by_industry": {
+      "Artificial Intelligence": {
+        "total": 12,
+        "closed": 1
+      },
+      "Cybersecurity": {
+        "total": 14,
+        "closed": 1
+      },
+      "Data Analytics": {
+        "total": 14,
+        "closed": 1
+      },
+      "Cloud Computing": {
+        "total": 8,
+        "closed": 0
+      },
+      "Internet of Things": {
+        "total": 10,
+        "closed": 0
+      },
+      "Software Development": {
+        "total": 12,
+        "closed": 0
+      },
+      "IT Services": {
+        "total": 3,
+        "closed": 0
+      },
+      "Venture Capital": {
+        "total": 1,
+        "closed": 0
+      },
+      "Network Security": {
+        "total": 3,
+        "closed": 1
+      },
+      "Digital Marketing": {
+        "total": 7,
+        "closed": 1
+      },
+      "Machine Learning": {
+        "total": 3,
+        "closed": 0
+      },
+      "Blockchain Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Mobile App Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Blockchain": {
+        "total": 7,
+        "closed": 0
+      },
+      "Technology": {
+        "total": 46,
+        "closed": 0
+      },
+      "E-commerce Solutions": {
+        "total": 2,
+        "closed": 0
+      },
+      "Digital Media": {
+        "total": 3,
+        "closed": 1
+      },
+      "Data Science": {
+        "total": 2,
+        "closed": 0
+      },
+      "Virtual Reality": {
+        "total": 3,
+        "closed": 1
+      },
+      "Technology Consulting": {
+        "total": 1,
+        "closed": 0
+      },
+      "Renewable Energy": {
+        "total": 1,
+        "closed": 0
+      }
+    },
+    "avg_days_to_close": 0.0,
+    "total_pipeline_value": 6979,
+    "total_active": 154,
+    "sales_stats": {
+      "leads_found": 100,
+      "outreach_sent": 127,
+      "deals_closed": 9,
+      "revenue": 8973,
+      "reactivated": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-15T15:09:23.670194",
+    "pipeline_stages": {
+      "lead": 57,
+      "outreach": 70,
+      "follow_up": 53,
+      "proposal": 0,
+      "closed": 11,
+      "lost": 0
+    },
+    "conversion_rates": {
+      "lead_to_outreach": 70.15706806282722,
+      "outreach_to_proposal": 8.208955223880597,
+      "proposal_to_close": 100.0,
+      "overall_win_rate": 5.7591623036649215
+    },
+    "by_source": [
+      {
+        "source": "linkedin",
+        "leads": 43,
+        "closed": 4,
+        "lost": 0,
+        "revenue": 3988,
+        "win_rate": 9.3
+      },
+      {
+        "source": "crunchbase",
+        "leads": 39,
+        "closed": 2,
+        "lost": 0,
+        "revenue": 1994,
+        "win_rate": 5.1
+      },
+      {
+        "source": "yelp",
+        "leads": 39,
+        "closed": 2,
+        "lost": 0,
+        "revenue": 1994,
+        "win_rate": 5.1
+      },
+      {
+        "source": "industry_directory",
+        "leads": 22,
+        "closed": 2,
+        "lost": 0,
+        "revenue": 1994,
+        "win_rate": 9.1
+      },
+      {
+        "source": "clutch",
+        "leads": 11,
+        "closed": 1,
+        "lost": 0,
+        "revenue": 997,
+        "win_rate": 9.1
+      },
+      {
+        "source": "github",
+        "leads": 10,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "referral",
+        "leads": 14,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "google_business",
+        "leads": 13,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      }
+    ],
+    "by_tier": {
+      "Cold": 57,
+      "Hot": 63,
+      "Warm": 71
+    },
+    "by_industry": {
+      "Artificial Intelligence": {
+        "total": 12,
+        "closed": 2
+      },
+      "Cybersecurity": {
+        "total": 14,
+        "closed": 2
+      },
+      "Data Analytics": {
+        "total": 14,
+        "closed": 1
+      },
+      "Cloud Computing": {
+        "total": 8,
+        "closed": 0
+      },
+      "Internet of Things": {
+        "total": 10,
+        "closed": 1
+      },
+      "Software Development": {
+        "total": 12,
+        "closed": 1
+      },
+      "IT Services": {
+        "total": 3,
+        "closed": 0
+      },
+      "Venture Capital": {
+        "total": 1,
+        "closed": 0
+      },
+      "Network Security": {
+        "total": 3,
+        "closed": 1
+      },
+      "Digital Marketing": {
+        "total": 7,
+        "closed": 1
+      },
+      "Machine Learning": {
+        "total": 3,
+        "closed": 0
+      },
+      "Blockchain Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Mobile App Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Blockchain": {
+        "total": 7,
+        "closed": 0
+      },
+      "Technology": {
+        "total": 83,
+        "closed": 0
+      },
+      "E-commerce Solutions": {
+        "total": 2,
+        "closed": 0
+      },
+      "Digital Media": {
+        "total": 3,
+        "closed": 1
+      },
+      "Data Science": {
+        "total": 2,
+        "closed": 0
+      },
+      "Virtual Reality": {
+        "total": 3,
+        "closed": 1
+      },
+      "Technology Consulting": {
+        "total": 1,
+        "closed": 0
+      },
+      "Renewable Energy": {
+        "total": 1,
+        "closed": 0
+      }
+    },
+    "avg_days_to_close": 0.0,
+    "total_pipeline_value": 10967,
+    "total_active": 191,
+    "sales_stats": {
+      "leads_found": 100,
+      "outreach_sent": 127,
+      "deals_closed": 9,
+      "revenue": 8973,
+      "reactivated": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-15T16:30:22.080911",
+    "pipeline_stages": {
+      "lead": 57,
+      "outreach": 68,
+      "follow_up": 61,
+      "proposal": 0,
+      "closed": 13,
+      "lost": 0
+    },
+    "conversion_rates": {
+      "lead_to_outreach": 71.35678391959799,
+      "outreach_to_proposal": 9.15492957746479,
+      "proposal_to_close": 100.0,
+      "overall_win_rate": 6.532663316582915
+    },
+    "by_source": [
+      {
+        "source": "linkedin",
+        "leads": 44,
+        "closed": 5,
+        "lost": 0,
+        "revenue": 4985,
+        "win_rate": 11.4
+      },
+      {
+        "source": "yelp",
+        "leads": 39,
+        "closed": 3,
+        "lost": 0,
+        "revenue": 2991,
+        "win_rate": 7.7
+      },
+      {
+        "source": "crunchbase",
+        "leads": 42,
+        "closed": 2,
+        "lost": 0,
+        "revenue": 1994,
+        "win_rate": 4.8
+      },
+      {
+        "source": "industry_directory",
+        "leads": 22,
+        "closed": 2,
+        "lost": 0,
+        "revenue": 1994,
+        "win_rate": 9.1
+      },
+      {
+        "source": "clutch",
+        "leads": 11,
+        "closed": 1,
+        "lost": 0,
+        "revenue": 997,
+        "win_rate": 9.1
+      },
+      {
+        "source": "github",
+        "leads": 10,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "referral",
+        "leads": 16,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "google_business",
+        "leads": 15,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      }
+    ],
+    "by_tier": {
+      "Cold": 57,
+      "Hot": 65,
+      "Warm": 77
+    },
+    "by_industry": {
+      "Artificial Intelligence": {
+        "total": 12,
+        "closed": 4
+      },
+      "Cybersecurity": {
+        "total": 14,
+        "closed": 2
+      },
+      "Data Analytics": {
+        "total": 14,
+        "closed": 1
+      },
+      "Cloud Computing": {
+        "total": 8,
+        "closed": 0
+      },
+      "Internet of Things": {
+        "total": 10,
+        "closed": 1
+      },
+      "Software Development": {
+        "total": 12,
+        "closed": 1
+      },
+      "IT Services": {
+        "total": 3,
+        "closed": 0
+      },
+      "Venture Capital": {
+        "total": 1,
+        "closed": 0
+      },
+      "Network Security": {
+        "total": 3,
+        "closed": 1
+      },
+      "Digital Marketing": {
+        "total": 7,
+        "closed": 1
+      },
+      "Machine Learning": {
+        "total": 3,
+        "closed": 0
+      },
+      "Blockchain Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Mobile App Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Blockchain": {
+        "total": 7,
+        "closed": 0
+      },
+      "Technology": {
+        "total": 91,
+        "closed": 0
+      },
+      "E-commerce Solutions": {
+        "total": 2,
+        "closed": 0
+      },
+      "Digital Media": {
+        "total": 3,
+        "closed": 1
+      },
+      "Data Science": {
+        "total": 2,
+        "closed": 0
+      },
+      "Virtual Reality": {
+        "total": 3,
+        "closed": 1
+      },
+      "Technology Consulting": {
+        "total": 1,
+        "closed": 0
+      },
+      "Renewable Energy": {
+        "total": 1,
+        "closed": 0
+      }
+    },
+    "avg_days_to_close": 0.0,
+    "total_pipeline_value": 12961,
+    "total_active": 199,
+    "sales_stats": {
+      "leads_found": 100,
+      "outreach_sent": 127,
+      "deals_closed": 9,
+      "revenue": 8973,
+      "reactivated": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-16T12:05:41.115800",
+    "pipeline_stages": {
+      "lead": 174,
+      "outreach": 78,
+      "follow_up": 67,
+      "proposal": 0,
+      "closed": 17,
+      "lost": 0
+    },
+    "conversion_rates": {
+      "lead_to_outreach": 48.214285714285715,
+      "outreach_to_proposal": 10.493827160493826,
+      "proposal_to_close": 100.0,
+      "overall_win_rate": 5.059523809523809
+    },
+    "by_source": [
+      {
+        "source": "linkedin",
+        "leads": 64,
+        "closed": 5,
+        "lost": 0,
+        "revenue": 4985,
+        "win_rate": 7.8
+      },
+      {
+        "source": "yelp",
+        "leads": 59,
+        "closed": 4,
+        "lost": 0,
+        "revenue": 3988,
+        "win_rate": 6.8
+      },
+      {
+        "source": "crunchbase",
+        "leads": 61,
+        "closed": 2,
+        "lost": 0,
+        "revenue": 1994,
+        "win_rate": 3.3
+      },
+      {
+        "source": "industry_directory",
+        "leads": 41,
+        "closed": 2,
+        "lost": 0,
+        "revenue": 1994,
+        "win_rate": 4.9
+      },
+      {
+        "source": "clutch",
+        "leads": 26,
+        "closed": 2,
+        "lost": 0,
+        "revenue": 1994,
+        "win_rate": 7.7
+      },
+      {
+        "source": "referral",
+        "leads": 16,
+        "closed": 2,
+        "lost": 0,
+        "revenue": 1994,
+        "win_rate": 12.5
+      },
+      {
+        "source": "github",
+        "leads": 39,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "google_business",
+        "leads": 15,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      },
+      {
+        "source": "g2",
+        "leads": 15,
+        "closed": 0,
+        "lost": 0,
+        "revenue": 0,
+        "win_rate": 0.0
+      }
+    ],
+    "by_tier": {
+      "Cold": 86,
+      "Hot": 149,
+      "Warm": 101
+    },
+    "by_industry": {
+      "Artificial Intelligence": {
+        "total": 12,
+        "closed": 4
+      },
+      "Cybersecurity": {
+        "total": 14,
+        "closed": 2
+      },
+      "Data Analytics": {
+        "total": 14,
+        "closed": 1
+      },
+      "Cloud Computing": {
+        "total": 8,
+        "closed": 0
+      },
+      "Internet of Things": {
+        "total": 10,
+        "closed": 2
+      },
+      "Software Development": {
+        "total": 12,
+        "closed": 1
+      },
+      "IT Services": {
+        "total": 3,
+        "closed": 0
+      },
+      "Venture Capital": {
+        "total": 1,
+        "closed": 0
+      },
+      "Network Security": {
+        "total": 3,
+        "closed": 1
+      },
+      "Digital Marketing": {
+        "total": 7,
+        "closed": 1
+      },
+      "Machine Learning": {
+        "total": 3,
+        "closed": 0
+      },
+      "Blockchain Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Mobile App Development": {
+        "total": 1,
+        "closed": 0
+      },
+      "Blockchain": {
+        "total": 7,
+        "closed": 1
+      },
+      "Technology": {
+        "total": 120,
+        "closed": 2
+      },
+      "E-commerce Solutions": {
+        "total": 2,
+        "closed": 0
+      },
+      "Digital Media": {
+        "total": 3,
+        "closed": 1
+      },
+      "Data Science": {
+        "total": 2,
+        "closed": 0
+      },
+      "Virtual Reality": {
+        "total": 3,
+        "closed": 1
+      },
+      "Technology Consulting": {
+        "total": 1,
+        "closed": 0
+      },
+      "Renewable Energy": {
+        "total": 1,
+        "closed": 0
+      },
+      "technology startups": {
+        "total": 28,
+        "closed": 0
+      },
+      "e-commerce brands": {
+        "total": 30,
+        "closed": 0
+      },
+      "real estate agencies": {
+        "total": 30,
+        "closed": 0
+      },
+      "healthcare clinics": {
+        "total": 20,
+        "closed": 0
+      }
+    },
+    "avg_days_to_close": 0.2,
+    "total_pipeline_value": 16949,
+    "total_active": 336,
+    "sales_stats": {
+      "leads_found": 150,
+      "outreach_sent": 30,
+      "deals_closed": 4,
+      "revenue": 3988,
+      "reactivated": 0
+    }
+  }
+]

@@ -1,0 +1,13 @@
+name = "ops-worker"
+main = "ops-worker.js"
+compatibility_date = "2026-04-12"
+
+# KV Namespaces for ops-worker
+[[kv_namespaces]]
+binding = "RB_TASKS"
+id = "YOUR_RB_TASKS_ID"
+preview_id = "YOUR_RB_TASKS_PREVIEW_ID"
+
+# Environment Variables
+[vars]
+WORKER_TYPE = "ops"

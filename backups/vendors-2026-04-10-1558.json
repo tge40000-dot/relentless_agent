@@ -1,0 +1,19 @@
+﻿{
+    "id":  "cook-gotdatgumbo",
+    "name":  "Got Dat Gumbo",
+    "owner":  "Jabari Hopkins",
+    "specialty":  "Gumbo",
+    "tagline":  "Best Gumbo around",
+    "type":  "Pop-Up Food Vendor",
+    "services":  [
+                     "Event Catering",
+                     "Pop-Up Kitchen",
+                     "Private Orders"
+                 ],
+    "location":  "Bay Area, CA",
+    "instagram":  "https://www.instagram.com/gotdatgumbo/",
+    "website":  "",
+    "bio":  "Jabari Hopkins is the man behind Got Dat Gumbo. Best bowls in the Bay Area. Available for event catering, pop-ups, and private orders through the Relentless Billionaire network.",
+    "featured":  true,
+    "status":  "active"
+}

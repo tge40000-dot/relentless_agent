@@ -1,0 +1,112 @@
+﻿[
+    {
+        "id":  "artist-kj-san",
+        "name":  "KJ San The Wheelman",
+        "aka":  "Shamal Rudulph",
+        "genre":  "Hip-Hop / Rap",
+        "location":  "Vallejo, CA",
+        "bio":  "Self-taught audio engineer and rapper from Vallejo. Making music since 2006.",
+        "youtube":  "https://www.youtube.com/@kjsanthewheelman",
+        "instagram":  "",
+        "status":  "active"
+    },
+    {
+        "id":  "artist-mr-knight-train",
+        "name":  "Mr. Knight Train",
+        "aka":  "K.T.",
+        "genre":  "Hip-Hop / Bay Area Rap",
+        "location":  "Bay Area, CA",
+        "bio":  "Independent Bay Area hip-hop artist. Training Day Productions founder. Performed alongside The Luniz, San Quinn, RBL Posse, J-Stalin.",
+        "youtube":  "https://www.youtube.com/@MrKnightTrainTDP",
+        "instagram":  "",
+        "status":  "active"
+    },
+    {
+        "id":  "artist-freeman-williams",
+        "name":  "Freeman Freejack Williams",
+        "aka":  "Freejack",
+        "genre":  "Hip-Hop / Production",
+        "location":  "San Pablo, CA",
+        "bio":  "Legendary producer. Credits include Dr. Dre, Snoop Dogg, Warren G, Wu-Tang Clan, 2Pac. Gutta Child Records founder.",
+        "youtube":  "",
+        "instagram":  "@freejack_music",
+        "status":  "active"
+    },
+    {
+        "id":  "artist-mistah-smo",
+        "name":  "Mistah Smo",
+        "aka":  "BLACKJOKER510",
+        "genre":  "Hyphy 2.0 / Sideshow Music",
+        "location":  "Oakland, CA",
+        "bio":  "Oakland rapper and pioneer of 2nd Generation Hyphy 2.0. Da Don of Sideshow Music. Brakeless Dynasty.",
+        "youtube":  "https://www.youtube.com/@BLACKJOKER510",
+        "instagram":  "",
+        "status":  "active"
+    },
+    {
+        "id":  "artist-bam-morgan",
+        "name":  "Bam Morgan",
+        "aka":  "",
+        "genre":  "R\u0026B / Hip-Hop",
+        "location":  "Bay Area, CA",
+        "bio":  "Recording artist signed to Morning Star Productions. Album: The Truth.",
+        "youtube":  "",
+        "instagram":  "",
+        "status":  "active"
+    },
+    {
+        "id":  "artist-demarco-evans",
+        "name":  "Demarco Evans",
+        "aka":  "",
+        "genre":  "Hip-Hop / Rap",
+        "location":  "Bay Area, CA",
+        "bio":  "Bay Area artist and creative collaborator in the Relentless Billionaire network.",
+        "youtube":  "",
+        "instagram":  "",
+        "status":  "active"
+    },
+    {
+        "id":  "artist-rock-solid-ent",
+        "name":  "Rock Solid Entertainment LLC",
+        "aka":  "",
+        "genre":  "Hip-Hop / Rap",
+        "location":  "Bay Area, CA",
+        "bio":  "Independent entertainment company and music label. Artists include NSMG TRUU and Yung Stacks.",
+        "youtube":  "https://www.youtube.com/@rocksolidentertainment6109",
+        "instagram":  "",
+        "status":  "active"
+    },
+    {
+        "id":  "artist-gnarddastarr",
+        "name":  "GNardDaStarr",
+        "aka":  "",
+        "genre":  "Hip-Hop / Rap",
+        "location":  "Bay Area, CA",
+        "bio":  "Bay Area rapper and content creator. Featured in Gnard And Grumps Take Vegas with 26K+ views.",
+        "youtube":  "https://www.youtube.com/@GNardDaStarr",
+        "instagram":  "@gnarddastarr",
+        "status":  "active"
+    },
+    {
+        "id":  "artist-thrilly-gobad",
+        "name":  "Thrilly GoBad",
+        "aka":  "ThrillyGoBad",
+        "genre":  "Hip-Hop / Rap",
+        "location":  "Bay Area, CA",
+        "bio":  "Bay Area rapper with gritty street anthems. Music video Not This Gang ft. BabyGleeko.",
+        "youtube":  "",
+        "instagram":  "@Thrilly_GoBad",
+        "status":  "active"
+    },
+    {
+        "id":  "artist-calyboikd",
+        "name":  "CalyBoi KD",
+        "aka":  "CALYBOIKD",
+        "genre":  "Hip-Hop / Rap",
+        "location":  "Bay Area, CA",
+        "bio":  "Bay Area rapper. 13 videos on YouTube spanning over a decade. Music video DarK via Live Entertainment LLC.",
+        "youtube":  "https://www.youtube.com/@calyboikd",
+        "instagram":  "@CalyBoiKd",
+        "status":  "active"
+    }
+]

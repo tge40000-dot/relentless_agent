@@ -1,0 +1,82 @@
+[
+  {
+    "id": "svc-lead-gen",
+    "name": "AI-Powered Lead Generation",
+    "price": 500,
+    "displayPrice": "/project",
+    "description": "Automated prospect research, list building, and outreach sequences powered by AI.",
+    "features": [
+      "50-100 qualified leads",
+      "AI-powered prospect matching",
+      "Custom outreach sequences",
+      "Weekly performance reports"
+    ],
+    "category": "marketing",
+    "status": "active",
+    "ai_instructions": {
+      "industry": "Music, Events, Entertainment",
+      "location": "Bay Area, CA",
+      "count": 50
+    }
+  },
+  {
+    "id": "svc-flyer",
+    "name": "Custom Event Flyer Design",
+    "price": 200,
+    "displayPrice": "/flyer",
+    "description": "Professional event flyers with luxury aesthetic. Print-ready and social-optimized formats.",
+    "features": [
+      "2 revision rounds",
+      "Print-ready PDF",
+      "Instagram/Facebook optimized sizes",
+      "24-48 hour turnaround"
+    ],
+    "category": "creative",
+    "status": "active",
+    "ai_instructions": {
+      "eventName": "Relentless Billionaire Event",
+      "date": "TBD",
+      "location": "Bay Area, CA",
+      "vibe": "Luxury, Exclusive"
+    }
+  },
+  {
+    "id": "svc-outreach",
+    "name": "Targeted Outreach Campaign",
+    "price": 1000,
+    "displayPrice": "/campaign",
+    "description": "Full-service outreach to venues, sponsors, and partners.",
+    "features": [
+      "Custom pitch deck",
+      "Email sequences",
+      "Phone follow-up",
+      "Campaign analytics dashboard"
+    ],
+    "category": "marketing",
+    "status": "active",
+    "ai_instructions": {
+      "target": "Bay Area entrepreneurs and event hosts",
+      "goal": "Book new clients"
+    }
+  },
+  {
+    "id": "svc-consulting",
+    "name": "1-on-1 Business Consulting",
+    "price": 2000,
+    "displayPrice": "/session",
+    "description": "Strategic business consulting with Christopher. Brand architecture, revenue modeling, and growth strategy.",
+    "features": [
+      "90-minute deep dive session",
+      "Custom action plan",
+      "30-day follow-up support",
+      "Revenue modeling spreadsheet"
+    ],
+    "category": "strategy",
+    "status": "active",
+    "ai_instructions": {
+      "business": "Entrepreneurship",
+      "goals": "Grow revenue and brand",
+      "challenges": "Scaling"
+    }
+  }
+]

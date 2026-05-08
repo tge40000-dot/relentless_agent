@@ -1,0 +1,23 @@
+name = "beats-worker"
+main = "beats-worker.js"
+compatibility_date = "2026-04-12"
+
+# KV Namespaces for beats-worker
+[[kv_namespaces]]
+binding = "RB_ARTISTS"
+id = "YOUR_RB_ARTISTS_ID"
+preview_id = "YOUR_RB_ARTISTS_PREVIEW_ID"
+
+[[kv_namespaces]]
+binding = "RB_TASKS"
+id = "YOUR_RB_TASKS_ID"
+preview_id = "YOUR_RB_TASKS_PREVIEW_ID"
+
+# R2 Buckets for beats-worker
+[[r2_buckets]]
+binding = "RB_BEATS"
+bucket_name = "rb-beats"
+
+# Environment Variables
+[vars]
+WORKER_TYPE = "beats"

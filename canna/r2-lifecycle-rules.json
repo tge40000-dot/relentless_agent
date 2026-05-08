@@ -1,0 +1,35 @@
+{
+  "Rules": [
+    {
+      "RuleName": "DeleteOldVideosAfter90Days",
+      "Prefix": "videos/",
+      "Status": "Enabled",
+      "Actions": {
+        "Expiration": {
+          "Days": 90
+        }
+      }
+    },
+    {
+      "RuleName": "DeleteOldImagesAfter365Days",
+      "Prefix": "images/",
+      "Status": "Enabled",
+      "Actions": {
+        "Expiration": {
+          "Days": 365
+        }
+      }
+    },
+    {
+      "RuleName": "ArchiveOldBannersAfter180Days",
+      "Prefix": "banners/",
+      "Status": "Enabled",
+      "Actions": {
+        "Transition": {
+          "StorageClass": "InfrequentAccess",
+          "Days": 180
+        }
+      }
+    }
+  ]
+}

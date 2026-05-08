@@ -1,0 +1,141 @@
+// GotBeatsTab.js - GOT BEATS? Tab Component
+// Integrates with existing site aesthetics while adding beats functionality
+
+import React, { useState } from 'react';
+import BeatsMarketplace from './BeatsMarketplace';
+import BeatsAdmin from './BeatsAdmin';
+
+const GotBeatsTab = ({ 
+  apiBaseUrl = 'https://api.relentlessbillionaire.com',
+  userMembership = null,
+  isAdmin = false
+}) => {
+  const [activeView, setActiveView] = useState('marketplace');
+
+  return (
+    <div className="got-beats-tab">
+      <div className="tab-navigation">
+        <button
+          className={`tab-nav-button ${activeView === 'marketplace' ? 'active' : ''}`}
+          onClick={() => setActiveView('marketplace')}
+        >
+          🎵 Marketplace
+        </button>
+        {isAdmin && (
+          <button
+            className={`tab-nav-button ${activeView === 'manage' ? 'active' : ''}`}
+            onClick={() => setActiveView('manage')}
+          >
+          ⚙️ Manage Beats
+        </button>
+        )}
+      </div>
+
+      <div className="tab-content">
+        {activeView === 'marketplace' && (
+          <BeatsMarketplace 
+            apiBaseUrl={apiBaseUrl}
+            userMembership={userMembership}
+          />
+        )}
+        
+        {activeView === 'manage' && isAdmin && (
+          <BeatsAdmin apiBaseUrl={apiBaseUrl} />
+        )}
+      </div>
+
+      <style jsx>{`
+        .got-beats-tab {
+          width: 100%;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .tab-navigation {
+          display: flex;
+          gap: 4px;
+          margin-bottom: 20px;
+          border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-nav-button {
+          padding: 12px 24px;
+          background: none;
+          border: none;
+          border-bottom: 2px solid transparent;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 500;
+          color: #666;
+          transition: all 0.2s;
+        }
+
+        .tab-nav-button:hover {
+          color: #333;
+        }
+
+        .tab-nav-button.active {
+          color: #667eea;
+          border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+          animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        .admin-section {
+          background: white;
+          border-radius: 12px;
+          padding: 24px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-section h2 {
+          margin: 0 0 8px 0;
+          font-size: 20px;
+          color: #333;
+        }
+
+        .admin-section p {
+          margin: 0 0 20px 0;
+          color: #666;
+        }
+
+        .admin-placeholder {
+          text-align: center;
+          padding: 60px 20px;
+          background: #f9f9f9;
+          border-radius: 8px;
+          color: #666;
+        }
+
+        .admin-placeholder span {
+          font-size: 48px;
+          display: block;
+          margin-bottom: 12px;
+        }
+
+        .admin-placeholder p {
+          margin: 0;
+        }
+
+        @media (max-width: 768px) {
+          .tab-navigation {
+            overflow-x: auto;
+          }
+
+          .tab-nav-button {
+            padding: 10px 16px;
+            white-space: nowrap;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default GotBeatsTab;

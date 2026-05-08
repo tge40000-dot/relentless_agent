@@ -1,0 +1,330 @@
+/**
+ * Relentless Billionaire - Membership Injection Styles
+ * Matches existing site aesthetic: dark backgrounds, gold accents
+ */
+
+/* Membership Banner */
+.rb-membership-banner {
+  width: 100%;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.rb-banner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rb-banner-text {
+  color: #FFD700;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  flex: 1;
+}
+
+.rb-banner-dismiss {
+  background: none;
+  border: none;
+  color: #FFD700;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 8px;
+  margin-left: 16px;
+}
+
+.rb-banner-dismiss:hover {
+  opacity: 0.7;
+}
+
+/* Membership Section */
+.rb-membership-cards {
+  margin: 32px 0;
+  padding: 24px;
+}
+
+.rb-section-title {
+  color: #FFD700;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* Cards Grid */
+.rb-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .rb-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Membership Card */
+.rb-membership-card {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.rb-membership-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.2);
+}
+
+/* Featured Card (PRO Tier) */
+.rb-membership-card.rb-featured {
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.rb-badge-popular {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFD700;
+  color: #000;
+  padding: 4px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.rb-tier-name {
+  color: #FFD700;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.rb-tier-price {
+  color: #fff;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.rb-tier-discount {
+  background: #FFD700;
+  color: #000;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.rb-tier-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  text-align: left;
+}
+
+.rb-tier-perks li {
+  color: rgba(255, 255, 255, 0.8);
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.rb-tier-perks li::before {
+  content: '✓ ';
+  color: #FFD700;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.rb-join-btn {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  border: none;
+  color: #000;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.rb-join-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(255, 215, 0, 0.4);
+}
+
+/* Member Pricing on Service Cards */
+.rb-member-price {
+  color: #FFD700;
+  font-size: 0.85em;
+  font-style: italic;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+/* Admin Dashboard Button */
+.rb-admin-dashboard-btn {
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: #FFD700;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 12px;
+  transition: all 0.3s ease;
+}
+
+.rb-admin-dashboard-btn:hover {
+  background: rgba(255, 215, 0, 0.2);
+}
+
+/* Admin Dashboard Overlay */
+.rb-admin-dashboard {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+.rb-dashboard-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.rb-dashboard-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 900px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.rb-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  padding-bottom: 16px;
+}
+
+.rb-dashboard-header h2 {
+  color: #FFD700;
+  font-size: 24px;
+  margin: 0;
+}
+
+.rb-dashboard-close {
+  background: none;
+  border: none;
+  color: #FFD700;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.rb-dashboard-close:hover {
+  opacity: 0.7;
+}
+
+/* Stats Grid */
+.rb-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .rb-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.rb-stat-card {
+  background: rgba(0, 0, 0, 0.6);
+  border-top: 3px solid #FFD700;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.rb-stat-number {
+  color: #FFD700;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.rb-stat-label {
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Dashboard Section */
+.rb-dashboard-section {
+  margin-bottom: 24px;
+}
+
+.rb-dashboard-section h3 {
+  color: #FFD700;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.rb-quick-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rb-quick-actions button {
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: #FFD700;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.rb-quick-actions button:hover {
+  background: rgba(255, 215, 0, 0.2);
+  transform: translateY(-2px);
+}

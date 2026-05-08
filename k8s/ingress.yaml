@@ -1,0 +1,65 @@
+ bffbgbc zfbapiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: relentless-ingress
+  namespace: relentless-agent
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rate-limit: "100"
+spec:
+  tls:
+  - hosts:
+    - relentlessbillionaire.com
+    - www.relentlessbillionaire.com
+    secretName: relentless-tls
+  rules:
+  - host: relentlessbillionaire.com
+    http:
+      paths:
+      - path: /api/
+        pathType: Prefix
+        backend:
+          service:
+            name: agent-service
+            port:
+              number: 8000
+      - path: /jobs/
+        pathType: Prefix
+        backend:
+          service:
+            name: job-manager-service
+            port:
+              number: 8001
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: dashboard-service
+            port:
+              number: 8002
+  - host: www.relentlessbillionaire.com
+    http:
+      paths:
+      - path: /api/
+        pathType: Prefix
+        backend:
+          service:
+            name: agent-service
+            port:
+              number: 8000
+      - path: /jobs/
+        pathType: Prefix
+        backend:
+          service:
+            name: job-manager-service
+            port:
+              number: 8001
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: dashboard-service
+            port:
+              number: 8002

@@ -1,0 +1,128 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: relentless_postgres
+    environment:
+      POSTGRES_DB: relentless_agent
+      POSTGRES_USER: relentless_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-relentless_pass}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U relentless_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis for job queue and caching
+  redis:
+    image: redis:7-alpine
+    container_name: relentless_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: redis-server --appendonly yes
+
+  # Job Manager
+  job_manager:
+    build: .
+    container_name: relentless_job_manager
+    command: python job_manager.py
+    ports:
+      - "8001:8001"
+    environment:
+      - DATABASE_URL=postgresql://relentless_user:relentless_pass@postgres:5432/relentless_agent
+      - REDIS_URL=redis://redis:6379
+      - POSTGRES_PASSWORD=relentless_pass
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config
+
+  # Dashboard
+  dashboard:
+    build: .
+    container_name: relentless_dashboard
+    command: python dashboard.py
+    ports:
+      - "8002:8002"
+    environment:
+      - DATABASE_URL=postgresql://relentless_user:relentless_pass@postgres:5432/relentless_agent
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - job_manager
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config
+
+  # 24/7 Monitor
+  monitor:
+    build: .
+    container_name: relentless_monitor
+    command: python monitor_24_7.py
+    environment:
+      - DATABASE_URL=postgresql://relentless_user:relentless_pass@postgres:5432/relentless_agent
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - job_manager
+      - dashboard
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config
+    restart: unless-stopped
+
+  # Relentless Agent (Main API)
+  agent:
+    build: .
+    container_name: relentless_agent
+    command: python run_server.py
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://relentless_user:relentless_pass@postgres:5432/relentless_agent
+      - REDIS_URL=redis://redis:6379
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: relentless_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - agent
+      - job_manager
+      - dashboard
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:

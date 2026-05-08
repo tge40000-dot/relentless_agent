@@ -1,0 +1,28 @@
+name = "ai-worker"
+main = "ai-worker.js"
+compatibility_date = "2026-04-12"
+
+# KV Namespaces for ai-worker
+[[kv_namespaces]]
+binding = "RB_TASKS"
+id = "YOUR_RB_TASKS_ID"
+preview_id = "YOUR_RB_TASKS_PREVIEW_ID"
+
+[[kv_namespaces]]
+binding = "RB_AI_QUEUE"
+id = "YOUR_RB_AI_QUEUE_ID"
+preview_id = "YOUR_RB_AI_QUEUE_PREVIEW_ID"
+
+# R2 Buckets for ai-worker
+[[r2_buckets]]
+binding = "RB_AI_INGEST"
+bucket_name = "rb-ai-ingest"
+
+# Environment Variables
+[vars]
+WORKER_TYPE = "ai"
+
+# Secrets (use `wrangler secret put <KEYNAME>`)
+# Required secrets:
+# - OPENAI_API_KEY
+# - OPENAI_MODEL

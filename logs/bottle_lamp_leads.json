@@ -1,0 +1,827 @@
+[
+  {
+    "handle": "@sf_user_datenightsf_0",
+    "platform": "instagram",
+    "name": "User 0",
+    "location": "San Francisco",
+    "intent_signals": [
+      "date night sf",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 19,
+    "follower_count": 553,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "contacted",
+    "messages_sent": [
+      {
+        "message": "Hey User! Date night idea: bottle lamp class at a cigar bar. You both make custom lamps, have drinks, it's hands-on so no awkward silence. Way better than dinner and a movie. Want details?",
+        "persona": "date_night",
+        "sent_at": "2026-04-13T22:28:20.994431",
+        "platform": "instagram",
+        "template_type": "date_night"
+      }
+    ],
+    "replies": [],
+    "last_contact": "2026-04-13T22:28:20.994431"
+  },
+  {
+    "handle": "@sf_user_datenightsf_1",
+    "platform": "instagram",
+    "name": "User 1",
+    "location": "San Francisco",
+    "intent_signals": [
+      "date night sf",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 16,
+    "follower_count": 1550,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "contacted",
+    "messages_sent": [
+      {
+        "message": "Hey User! Looking for a unique date night in SF? We run bottle lamp classes inside a cigar bar. You create something together + cocktails. North Beach location. Interested?",
+        "persona": "date_night",
+        "sent_at": "2026-04-13T22:28:21.004067",
+        "platform": "instagram",
+        "template_type": "date_night"
+      }
+    ],
+    "replies": [],
+    "last_contact": "2026-04-13T22:28:21.004067"
+  },
+  {
+    "handle": "@sf_user_datenightsf_2",
+    "platform": "instagram",
+    "name": "User 2",
+    "location": "San Francisco",
+    "intent_signals": [
+      "date night sf",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 77,
+    "follower_count": 647,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "contacted",
+    "messages_sent": [
+      {
+        "message": "Hey User! Date night idea: bottle lamp class at a cigar bar. You both make custom lamps, have drinks, it's hands-on so no awkward silence. Way better than dinner and a movie. Want details?",
+        "persona": "date_night",
+        "sent_at": "2026-04-13T22:28:21.010135",
+        "platform": "instagram",
+        "template_type": "date_night"
+      }
+    ],
+    "replies": [],
+    "last_contact": "2026-04-13T22:28:21.010135"
+  },
+  {
+    "handle": "@sf_user_datenightsf_3",
+    "platform": "instagram",
+    "name": "User 3",
+    "location": "San Francisco",
+    "intent_signals": [
+      "date night sf",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 30,
+    "follower_count": 1043,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "contacted",
+    "messages_sent": [
+      {
+        "message": "Hey User! Date night idea: bottle lamp class at a cigar bar. You both make custom lamps, have drinks, it's hands-on so no awkward silence. Way better than dinner and a movie. Want details?",
+        "persona": "date_night",
+        "sent_at": "2026-04-13T22:28:21.021706",
+        "platform": "instagram",
+        "template_type": "date_night"
+      }
+    ],
+    "replies": [],
+    "last_contact": "2026-04-13T22:28:21.021706"
+  },
+  {
+    "handle": "@sf_user_datenightsf_4",
+    "platform": "instagram",
+    "name": "User 4",
+    "location": "San Francisco",
+    "intent_signals": [
+      "date night sf",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 98,
+    "follower_count": 256,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "contacted",
+    "messages_sent": [
+      {
+        "message": "Hey User! Date night idea: bottle lamp class at a cigar bar. You both make custom lamps, have drinks, it's hands-on so no awkward silence. Way better than dinner and a movie. Want details?",
+        "persona": "date_night",
+        "sent_at": "2026-04-13T22:28:21.028871",
+        "platform": "instagram",
+        "template_type": "date_night"
+      }
+    ],
+    "replies": [],
+    "last_contact": "2026-04-13T22:28:21.028871"
+  },
+  {
+    "handle": "@sf_user_thingstodosanfrancisco_0",
+    "platform": "instagram",
+    "name": "User 0",
+    "location": "San Francisco",
+    "intent_signals": [
+      "things to do san francisco",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 68,
+    "follower_count": 1519,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "contacted",
+    "messages_sent": [
+      {
+        "message": "Hey User! Date night idea: bottle lamp class at a cigar bar. You both make custom lamps, have drinks, it's hands-on so no awkward silence. Way better than dinner and a movie. Want details?",
+        "persona": "date_night",
+        "sent_at": "2026-04-13T22:28:21.038710",
+        "platform": "instagram",
+        "template_type": "date_night"
+      }
+    ],
+    "replies": [],
+    "last_contact": "2026-04-13T22:28:21.038710"
+  },
+  {
+    "handle": "@sf_user_thingstodosanfrancisco_1",
+    "platform": "instagram",
+    "name": "User 1",
+    "location": "San Francisco",
+    "intent_signals": [
+      "things to do san francisco",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 14,
+    "follower_count": 613,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "contacted",
+    "messages_sent": [
+      {
+        "message": "Hey User! Date night idea: bottle lamp class at a cigar bar. You both make custom lamps, have drinks, it's hands-on so no awkward silence. Way better than dinner and a movie. Want details?",
+        "persona": "date_night",
+        "sent_at": "2026-04-13T22:28:21.045964",
+        "platform": "instagram",
+        "template_type": "date_night"
+      }
+    ],
+    "replies": [],
+    "last_contact": "2026-04-13T22:28:21.045964"
+  },
+  {
+    "handle": "@sf_user_thingstodosanfrancisco_2",
+    "platform": "instagram",
+    "name": "User 2",
+    "location": "San Francisco",
+    "intent_signals": [
+      "things to do san francisco",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 12,
+    "follower_count": 1793,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "contacted",
+    "messages_sent": [
+      {
+        "message": "Hey User! Date night idea: bottle lamp class at a cigar bar. You both make custom lamps, have drinks, it's hands-on so no awkward silence. Way better than dinner and a movie. Want details?",
+        "persona": "date_night",
+        "sent_at": "2026-04-13T22:28:21.057295",
+        "platform": "instagram",
+        "template_type": "date_night"
+      }
+    ],
+    "replies": [],
+    "last_contact": "2026-04-13T22:28:21.057295"
+  },
+  {
+    "handle": "@sf_user_thingstodosanfrancisco_3",
+    "platform": "instagram",
+    "name": "User 3",
+    "location": "San Francisco",
+    "intent_signals": [
+      "things to do san francisco",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 19,
+    "follower_count": 249,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "contacted",
+    "messages_sent": [
+      {
+        "message": "Hey User! Date night idea: bottle lamp class at a cigar bar. You both make custom lamps, have drinks, it's hands-on so no awkward silence. Way better than dinner and a movie. Want details?",
+        "persona": "date_night",
+        "sent_at": "2026-04-13T22:28:21.067893",
+        "platform": "instagram",
+        "template_type": "date_night"
+      }
+    ],
+    "replies": [],
+    "last_contact": "2026-04-13T22:28:21.067893"
+  },
+  {
+    "handle": "@sf_user_thingstodosanfrancisco_4",
+    "platform": "instagram",
+    "name": "User 4",
+    "location": "San Francisco",
+    "intent_signals": [
+      "things to do san francisco",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 34,
+    "follower_count": 400,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "contacted",
+    "messages_sent": [
+      {
+        "message": "Hey User! Date night idea: bottle lamp class at a cigar bar. You both make custom lamps, have drinks, it's hands-on so no awkward silence. Way better than dinner and a movie. Want details?",
+        "persona": "date_night",
+        "sent_at": "2026-04-13T22:28:21.075361",
+        "platform": "instagram",
+        "template_type": "date_night"
+      }
+    ],
+    "replies": [],
+    "last_contact": "2026-04-13T22:28:21.075361"
+  },
+  {
+    "handle": "@sf_user_diyartclass_0",
+    "platform": "instagram",
+    "name": "User 0",
+    "location": "San Francisco",
+    "intent_signals": [
+      "diy art class",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 13,
+    "follower_count": 795,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "@sf_user_diyartclass_1",
+    "platform": "instagram",
+    "name": "User 1",
+    "location": "San Francisco",
+    "intent_signals": [
+      "diy art class",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 66,
+    "follower_count": 1240,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "@sf_user_diyartclass_2",
+    "platform": "instagram",
+    "name": "User 2",
+    "location": "San Francisco",
+    "intent_signals": [
+      "diy art class",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 29,
+    "follower_count": 1113,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "@sf_user_diyartclass_3",
+    "platform": "instagram",
+    "name": "User 3",
+    "location": "San Francisco",
+    "intent_signals": [
+      "diy art class",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 68,
+    "follower_count": 241,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "@sf_user_diyartclass_4",
+    "platform": "instagram",
+    "name": "User 4",
+    "location": "San Francisco",
+    "intent_signals": [
+      "diy art class",
+      "san francisco",
+      "things to do",
+      "date night"
+    ],
+    "post_count": 51,
+    "follower_count": 1249,
+    "added_at": "2026-04-13T22:28:20.922418",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "u/sf_redditor_0",
+    "platform": "reddit",
+    "name": "Redditor 0",
+    "subreddit": "asksf",
+    "intent_signals": [
+      "date night sf",
+      "visiting sf",
+      "recommendations"
+    ],
+    "post_count": 23,
+    "karma": 1003,
+    "added_at": "2026-04-13T22:28:20.941419",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "u/sf_redditor_1",
+    "platform": "reddit",
+    "name": "Redditor 1",
+    "subreddit": "bayarea",
+    "intent_signals": [
+      "date night sf",
+      "visiting sf",
+      "recommendations"
+    ],
+    "post_count": 41,
+    "karma": 146,
+    "added_at": "2026-04-13T22:28:20.941419",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "u/sf_redditor_2",
+    "platform": "reddit",
+    "name": "Redditor 2",
+    "subreddit": "bayarea",
+    "intent_signals": [
+      "date night sf",
+      "visiting sf",
+      "recommendations"
+    ],
+    "post_count": 24,
+    "karma": 3376,
+    "added_at": "2026-04-13T22:28:20.941419",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "eventbrite_user_0",
+    "platform": "eventbrite",
+    "name": "Event Goer 0",
+    "intent_signals": [
+      "art class",
+      "diy",
+      "san francisco",
+      "date night"
+    ],
+    "past_events": 2,
+    "added_at": "2026-04-13T22:28:20.953770",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "eventbrite_user_1",
+    "platform": "eventbrite",
+    "name": "Event Goer 1",
+    "intent_signals": [
+      "art class",
+      "diy",
+      "san francisco",
+      "date night"
+    ],
+    "past_events": 4,
+    "added_at": "2026-04-13T22:28:20.953770",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "eventbrite_user_2",
+    "platform": "eventbrite",
+    "name": "Event Goer 2",
+    "intent_signals": [
+      "art class",
+      "diy",
+      "san francisco",
+      "date night"
+    ],
+    "past_events": 2,
+    "added_at": "2026-04-13T22:28:20.953770",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "eventbrite_user_3",
+    "platform": "eventbrite",
+    "name": "Event Goer 3",
+    "intent_signals": [
+      "art class",
+      "diy",
+      "san francisco",
+      "date night"
+    ],
+    "past_events": 5,
+    "added_at": "2026-04-13T22:28:20.953770",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "eventbrite_user_4",
+    "platform": "eventbrite",
+    "name": "Event Goer 4",
+    "intent_signals": [
+      "art class",
+      "diy",
+      "san francisco",
+      "date night"
+    ],
+    "past_events": 1,
+    "added_at": "2026-04-13T22:28:20.953770",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "eventbrite_user_5",
+    "platform": "eventbrite",
+    "name": "Event Goer 5",
+    "intent_signals": [
+      "art class",
+      "diy",
+      "san francisco",
+      "date night"
+    ],
+    "past_events": 4,
+    "added_at": "2026-04-13T22:28:20.953770",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "eventbrite_user_6",
+    "platform": "eventbrite",
+    "name": "Event Goer 6",
+    "intent_signals": [
+      "art class",
+      "diy",
+      "san francisco",
+      "date night"
+    ],
+    "past_events": 1,
+    "added_at": "2026-04-13T22:28:20.953770",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "eventbrite_user_7",
+    "platform": "eventbrite",
+    "name": "Event Goer 7",
+    "intent_signals": [
+      "art class",
+      "diy",
+      "san francisco",
+      "date night"
+    ],
+    "past_events": 5,
+    "added_at": "2026-04-13T22:28:20.953770",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "meetup_user_0",
+    "platform": "meetup",
+    "name": "Meetup Member 0",
+    "intent_signals": [
+      "creative",
+      "diy",
+      "social",
+      "new experiences"
+    ],
+    "groups_joined": 4,
+    "added_at": "2026-04-13T22:28:20.958508",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "meetup_user_1",
+    "platform": "meetup",
+    "name": "Meetup Member 1",
+    "intent_signals": [
+      "creative",
+      "diy",
+      "social",
+      "new experiences"
+    ],
+    "groups_joined": 6,
+    "added_at": "2026-04-13T22:28:20.958508",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "meetup_user_2",
+    "platform": "meetup",
+    "name": "Meetup Member 2",
+    "intent_signals": [
+      "creative",
+      "diy",
+      "social",
+      "new experiences"
+    ],
+    "groups_joined": 5,
+    "added_at": "2026-04-13T22:28:20.958508",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "meetup_user_3",
+    "platform": "meetup",
+    "name": "Meetup Member 3",
+    "intent_signals": [
+      "creative",
+      "diy",
+      "social",
+      "new experiences"
+    ],
+    "groups_joined": 5,
+    "added_at": "2026-04-13T22:28:20.958508",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "meetup_user_4",
+    "platform": "meetup",
+    "name": "Meetup Member 4",
+    "intent_signals": [
+      "creative",
+      "diy",
+      "social",
+      "new experiences"
+    ],
+    "groups_joined": 5,
+    "added_at": "2026-04-13T22:28:20.958508",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "meetup_user_5",
+    "platform": "meetup",
+    "name": "Meetup Member 5",
+    "intent_signals": [
+      "creative",
+      "diy",
+      "social",
+      "new experiences"
+    ],
+    "groups_joined": 8,
+    "added_at": "2026-04-13T22:28:20.958508",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "@sf_tiktok_0",
+    "platform": "tiktok",
+    "name": "Creator 0",
+    "intent_signals": [
+      "sf",
+      "exploring",
+      "experiences"
+    ],
+    "video_count": 29,
+    "geo_tagged": true,
+    "added_at": "2026-04-13T22:28:20.970340",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "@sf_tiktok_1",
+    "platform": "tiktok",
+    "name": "Creator 1",
+    "intent_signals": [
+      "sf",
+      "exploring",
+      "experiences"
+    ],
+    "video_count": 94,
+    "geo_tagged": true,
+    "added_at": "2026-04-13T22:28:20.970340",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "@sf_tiktok_2",
+    "platform": "tiktok",
+    "name": "Creator 2",
+    "intent_signals": [
+      "sf",
+      "exploring",
+      "experiences"
+    ],
+    "video_count": 92,
+    "geo_tagged": true,
+    "added_at": "2026-04-13T22:28:20.970340",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "@sf_tiktok_3",
+    "platform": "tiktok",
+    "name": "Creator 3",
+    "intent_signals": [
+      "sf",
+      "exploring",
+      "experiences"
+    ],
+    "video_count": 23,
+    "geo_tagged": true,
+    "added_at": "2026-04-13T22:28:20.970340",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "fb_user_0",
+    "platform": "facebook",
+    "name": "Member 0",
+    "intent_signals": [
+      "things to do in sf",
+      "date ideas",
+      "group activities"
+    ],
+    "groups": [
+      "SF Events",
+      "Bay Area Things To Do"
+    ],
+    "added_at": "2026-04-13T22:28:20.978812",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "fb_user_1",
+    "platform": "facebook",
+    "name": "Member 1",
+    "intent_signals": [
+      "things to do in sf",
+      "date ideas",
+      "group activities"
+    ],
+    "groups": [
+      "SF Events",
+      "Bay Area Things To Do"
+    ],
+    "added_at": "2026-04-13T22:28:20.978812",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "fb_user_2",
+    "platform": "facebook",
+    "name": "Member 2",
+    "intent_signals": [
+      "things to do in sf",
+      "date ideas",
+      "group activities"
+    ],
+    "groups": [
+      "SF Events",
+      "Bay Area Things To Do"
+    ],
+    "added_at": "2026-04-13T22:28:20.978812",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "fb_user_3",
+    "platform": "facebook",
+    "name": "Member 3",
+    "intent_signals": [
+      "things to do in sf",
+      "date ideas",
+      "group activities"
+    ],
+    "groups": [
+      "SF Events",
+      "Bay Area Things To Do"
+    ],
+    "added_at": "2026-04-13T22:28:20.978812",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "fb_user_4",
+    "platform": "facebook",
+    "name": "Member 4",
+    "intent_signals": [
+      "things to do in sf",
+      "date ideas",
+      "group activities"
+    ],
+    "groups": [
+      "SF Events",
+      "Bay Area Things To Do"
+    ],
+    "added_at": "2026-04-13T22:28:20.978812",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "fb_user_5",
+    "platform": "facebook",
+    "name": "Member 5",
+    "intent_signals": [
+      "things to do in sf",
+      "date ideas",
+      "group activities"
+    ],
+    "groups": [
+      "SF Events",
+      "Bay Area Things To Do"
+    ],
+    "added_at": "2026-04-13T22:28:20.978812",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  },
+  {
+    "handle": "fb_user_6",
+    "platform": "facebook",
+    "name": "Member 6",
+    "intent_signals": [
+      "things to do in sf",
+      "date ideas",
+      "group activities"
+    ],
+    "groups": [
+      "SF Events",
+      "Bay Area Things To Do"
+    ],
+    "added_at": "2026-04-13T22:28:20.978812",
+    "status": "new",
+    "messages_sent": [],
+    "replies": []
+  }
+]

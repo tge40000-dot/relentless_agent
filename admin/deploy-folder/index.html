@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELENTLESS BILLIONAIRE - Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: "#d4af37",
+                        black: "#000000",
+                        gray: "#111111",
+                        dim: "#bbbbbb"
+                    },
+                    borderRadius: {
+                        DEFAULT: "8px"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #000; color: #fff; font-family: 'Inter', sans-serif; }
+        .sidebar { width: 256px; }
+        .main-content { margin-left: 256px; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="loginScreen" class="flex items-center justify-center h-screen bg-black">
+            <form id="loginForm" class="bg-gray p-8 rounded w-96">
+                <h1 class="text-gold text-2xl mb-6">Admin Login</h1>
+                <div id="loginError" class="bg-red-900 text-red-200 p-3 rounded mb-4 text-sm hidden"></div>
+                <input id="email" class="w-full mb-4 p-3 bg-black border border-gray-700 rounded" placeholder="Email" type="email" required>
+                <input id="password" class="w-full mb-4 p-3 bg-black border border-gray-700 rounded" placeholder="Password" type="password" required>
+                <button type="submit" class="w-full bg-gold text-black p-3 rounded hover:bg-yellow-400">Login</button>
+            </form>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="dashboardScreen" class="hidden">
+            <!-- Sidebar -->
+            <aside class="sidebar fixed left-0 top-0 h-full bg-black border-r border-gray-800 p-6 overflow-y-auto">
+                <h1 class="text-gold text-2xl font-bold mb-8">RB Admin</h1>
+                <nav class="flex flex-col gap-4 text-dim">
+                    <a href="#" data-page="dashboard" class="nav-link hover:text-gold transition-colors">Dashboard</a>
+                    <a href="#" data-page="artists" class="nav-link hover:text-gold transition-colors">Artists</a>
+                    <a href="#" data-page="services" class="nav-link hover:text-gold transition-colors">Services</a>
+                    <a href="#" data-page="vendors" class="nav-link hover:text-gold transition-colors">Vendors</a>
+                    <a href="#" data-page="events" class="nav-link hover:text-gold transition-colors">Events</a>
+                    <a href="#" data-page="memberships" class="nav-link hover:text-gold transition-colors">Memberships</a>
+                    <a href="#" data-page="bookings" class="nav-link hover:text-gold transition-colors">Bookings</a>
+                    <hr class="border-gray-700">
+                    <a href="#" data-page="payments" class="nav-link hover:text-gold transition-colors">Payments</a>
+                    <a href="#" data-page="sms" class="nav-link hover:text-gold transition-colors">SMS</a>
+                    <a href="#" data-page="email" class="nav-link hover:text-gold transition-colors">Email</a>
+                    <hr class="border-gray-700">
+                    <a href="#" data-page="settings" class="nav-link hover:text-gold transition-colors">Site Settings</a>
+                    <a href="#" data-page="theme" class="nav-link hover:text-gold transition-colors">Theme</a>
+                    <a href="#" data-page="typography" class="nav-link hover:text-gold transition-colors">Typography</a>
+                    <a href="#" data-page="branding" class="nav-link hover:text-gold transition-colors">Branding</a>
+                    <a href="#" data-page="social" class="nav-link hover:text-gold transition-colors">Social Links</a>
+                    <hr class="border-gray-700">
+                    <a href="#" data-page="backups" class="nav-link hover:text-gold transition-colors">Backups</a>
+                    <a href="#" data-page="system" class="nav-link hover:text-gold transition-colors">System Health</a>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Navbar -->
+                <header class="w-full bg-black border-b border-gray-800 p-4 flex justify-between items-center sticky top-0 z-10">
+                    <h2 class="text-xl text-gold font-semibold">Admin Dashboard</h2>
+                    <button id="logoutBtn" class="bg-gold text-black px-4 py-2 rounded hover:bg-yellow-400">Logout</button>
+                </header>
+
+                <!-- Page Content -->
+                <main id="pageContent" class="p-8">
+                    <!-- Content will be loaded here -->
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Client
+        const ADMIN_KEY = 'MomandDad197054';
+        async function api(path, method = "GET", body = null) {
+            const res = await fetch(`https://relentlessbillionaire.com${path}`, {
+                method,
+                headers: { "Content-Type": "application/json", "X-Admin-Key": ADMIN_KEY },
+                body: body ? JSON.stringify(body) : null
+            });
+            return res.json();
+        }
+
+        // Page Templates
+        const pageTemplates = {
+            dashboard: `
+                <h1 class="text-3xl text-gold font-bold mb-4">Welcome, Christopher</h1>
+                <p class="text-dim mb-8">Your control room is ready.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray p-6 rounded border border-gray-800">
+                        <h3 class="text-gold text-lg font-semibold mb-2">Total Revenue</h3>
+                        <p class="text-2xl font-bold">$0.00</p>
+                        <p class="text-dim text-sm">This month</p>
+                    </div>
+                    
+                    <div class="bg-gray p-6 rounded border border-gray-800">
+                        <h3 class="text-gold text-lg font-semibold mb-2">Active Members</h3>
+                        <p class="text-2xl font-bold">0</p>
+                        <p class="text-dim text-sm">Across all tiers</p>
+                    </div>
+                    
+                    <div class="bg-gray p-6 rounded border border-gray-800">
+                        <h3 class="text-gold text-lg font-semibold mb-2">Pending Orders</h3>
+                        <p class="text-2xl font-bold">0</p>
+                        <p class="text-dim text-sm">Awaiting fulfillment</p>
+                    </div>
+                    
+                    <div class="bg-gray p-6 rounded border border-gray-800">
+                        <h3 class="text-gold text-lg font-semibold mb-2">System Health</h3>
+                        <p class="text-2xl font-bold text-green-400">Online</p>
+                        <p class="text-dim text-sm">All systems operational</p>
+                    </div>
+                    
+                    <div class="bg-gray p-6 rounded border border-gray-800">
+                        <h3 class="text-gold text-lg font-semibold mb-2">Content Items</h3>
+                        <p class="text-2xl font-bold">0</p>
+                        <p class="text-dim text-sm">Artists, services, events</p>
+                    </div>
+                    
+                    <div class="bg-gray p-6 rounded border border-gray-800">
+                        <h3 class="text-gold text-lg font-semibold mb-2">Scaling Budget</h3>
+                        <p class="text-2xl font-bold">$0.00</p>
+                        <p class="text-dim text-sm">10% of revenue available</p>
+                    </div>
+                </div>
+            `,
+            
+            crud: (collection) => `
+                <h1 class="text-2xl text-gold mb-6 capitalize">${collection}</h1>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h2 class="text-xl mb-4 text-gold">Create New</h2>
+                        <div class="space-y-3">
+                            <input id="itemName" class="w-full p-3 bg-black border border-gray-700 rounded" placeholder="Name">
+                            <textarea id="itemDescription" class="w-full p-3 bg-black border border-gray-700 rounded h-32" placeholder="Description"></textarea>
+                            <input id="itemImage" class="w-full p-3 bg-black border border-gray-700 rounded" placeholder="Image URL (optional)">
+                            <button onclick="saveItem('${collection}')" class="bg-gold text-black px-6 py-3 rounded hover:bg-yellow-400">Create</button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-xl mb-4 text-gold">Existing Items</h2>
+                        <div id="itemsList" class="space-y-3 max-h-96 overflow-y-auto">
+                            <p class="text-dim">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            
+            settings: (settingType) => `
+                <h1 class="text-2xl text-gold mb-6">${settingType.charAt(0).toUpperCase() + settingType.slice(1)} Settings</h1>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h2 class="text-lg text-gold mb-2">Current Settings</h2>
+                        <pre id="currentSettings" class="bg-gray p-4 rounded text-sm overflow-x-auto">Loading...</pre>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-lg text-gold mb-2">Update Settings</h2>
+                        <textarea id="settingsValue" class="w-full p-3 bg-black border border-gray-700 rounded h-64 font-mono text-sm" placeholder="JSON settings"></textarea>
+                        <button onclick="saveSettings('${settingType}')" class="mt-3 bg-gold text-black px-6 py-3 rounded hover:bg-yellow-400">Save Settings</button>
+                    </div>
+                </div>
+            `,
+            
+            system: `
+                <h1 class="text-2xl text-gold mb-6">System Health</h1>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-gray p-6 rounded border border-gray-800">
+                        <h3 class="text-gold text-lg font-semibold mb-2">Overall Status</h3>
+                        <p class="text-2xl font-bold text-green-400">Healthy</p>
+                        <p class="text-dim text-sm">System health</p>
+                    </div>
+                    
+                    <div class="bg-gray p-6 rounded border border-gray-800">
+                        <h3 class="text-gold text-lg font-semibold mb-2">Uptime</h3>
+                        <p class="text-2xl font-bold text-green-400">99.9%</p>
+                        <p class="text-dim text-sm">Last 30 days</p>
+                    </div>
+                    
+                    <div class="bg-gray p-6 rounded border border-gray-800">
+                        <h3 class="text-gold text-lg font-semibold mb-2">Response Time</h3>
+                        <p class="text-2xl font-bold text-green-400">120ms</p>
+                        <p class="text-dim text-sm">Average</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray rounded border border-gray-800">
+                    <div class="p-4 border-b border-gray-800">
+                        <h2 class="text-lg text-gold">Service Status</h2>
+                    </div>
+                    <div class="p-4">
+                        <pre id="systemData" class="bg-black p-4 rounded text-sm overflow-x-auto">Loading system data...</pre>
+                    </div>
+                </div>
+            `,
+            
+            sms: `
+                <h1 class="text-2xl text-gold mb-6">SMS Messaging</h1>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h2 class="text-lg text-gold mb-4">Send New SMS</h2>
+                        <div class="space-y-4">
+                            <input id="smsRecipient" class="w-full p-3 bg-black border border-gray-700 rounded" placeholder="+1234567890">
+                            <textarea id="smsMessage" class="w-full p-3 bg-black border border-gray-700 rounded h-32" placeholder="Enter your message..."></textarea>
+                            <button onclick="sendSMS()" class="bg-gold text-black px-6 py-3 rounded hover:bg-yellow-400">Send SMS</button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-lg text-gold mb-4">SMS Templates</h2>
+                        <div class="space-y-3">
+                            <div class="p-4 bg-gray rounded border border-gray-800">
+                                <h3 class="text-gold font-semibold mb-2">Welcome Message</h3>
+                                <p class="text-dim text-sm mb-2">Welcome to Relentless Billionaire! Your membership is now active.</p>
+                                <button onclick="useSMSTemplate('Welcome to Relentless Billionaire! Your membership is now active.')" class="text-blue-400 text-sm hover:text-blue-300">Use Template</button>
+                            </div>
+                            <div class="p-4 bg-gray rounded border border-gray-800">
+                                <h3 class="text-gold font-semibold mb-2">Order Confirmation</h3>
+                                <p class="text-dim text-sm mb-2">Your order has been confirmed. We'll notify you when it's ready.</p>
+                                <button onclick="useSMSTemplate('Your order has been confirmed. We\\'ll notify you when it\\'s ready.')" class="text-blue-400 text-sm hover:text-blue-300">Use Template</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            
+            email: `
+                <h1 class="text-2xl text-gold mb-6">Email Messaging</h1>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h2 class="text-lg text-gold mb-4">Send New Email</h2>
+                        <div class="space-y-4">
+                            <input id="emailRecipient" class="w-full p-3 bg-black border border-gray-700 rounded" placeholder="customer@example.com" type="email">
+                            <input id="emailSubject" class="w-full p-3 bg-black border border-gray-700 rounded" placeholder="Email subject">
+                            <textarea id="emailMessage" class="w-full p-3 bg-black border border-gray-700 rounded h-32" placeholder="Enter your message..."></textarea>
+                            <button onclick="sendEmail()" class="bg-gold text-black px-6 py-3 rounded hover:bg-yellow-400">Send Email</button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-lg text-gold mb-4">Email Templates</h2>
+                        <div class="space-y-3">
+                            <div class="p-4 bg-gray rounded border border-gray-800">
+                                <h3 class="text-gold font-semibold mb-2">Welcome Email</h3>
+                                <p class="text-dim text-sm mb-2">Welcome to Relentless Billionaire! Your membership is now active.</p>
+                                <button onclick="useEmailTemplate('Welcome to Relentless Billionaire!', 'Welcome to Relentless Billionaire! Your membership is now active. Thank you for joining our exclusive community.')" class="text-blue-400 text-sm hover:text-blue-300">Use Template</button>
+                            </div>
+                            <div class="p-4 bg-gray rounded border border-gray-800">
+                                <h3 class="text-gold font-semibold mb-2">Order Confirmation</h3>
+                                <p class="text-dim text-sm mb-2">Your order has been confirmed and is being processed.</p>
+                                <button onclick="useEmailTemplate('Order Confirmation', 'Your order has been confirmed and is being processed. We\\'ll notify you when it\\'s ready for delivery.')" class="text-blue-400 text-sm hover:text-blue-300">Use Template</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            
+            payments: `
+                <h1 class="text-2xl text-gold mb-6">Payment Transactions</h1>
+                
+                <div class="bg-gray rounded border border-gray-800">
+                    <div class="p-4 border-b border-gray-800">
+                        <h2 class="text-lg text-gold">Recent Transactions</h2>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-800">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-gold">ID</th>
+                                    <th class="px-4 py-3 text-left text-gold">Customer</th>
+                                    <th class="px-4 py-3 text-left text-gold">Amount</th>
+                                    <th class="px-4 py-3 text-left text-gold">Type</th>
+                                    <th class="px-4 py-3 text-left text-gold">Status</th>
+                                    <th class="px-4 py-3 text-left text-gold">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionsList">
+                                <tr>
+                                    <td colspan="6" class="p-8 text-center text-dim">No transactions found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `,
+            
+            backups: `
+                <h1 class="text-2xl text-gold mb-6">System Backups</h1>
+                
+                <div class="mb-6">
+                    <button onclick="createBackup()" class="bg-gold text-black px-6 py-3 rounded hover:bg-yellow-400">Create New Backup</button>
+                </div>
+                
+                <div class="bg-gray rounded border border-gray-800">
+                    <div class="p-4 border-b border-gray-800">
+                        <h2 class="text-lg text-gold">Available Backups</h2>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-800">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-gold">ID</th>
+                                    <th class="px-4 py-3 text-left text-gold">Date</th>
+                                    <th class="px-4 py-3 text-left text-gold">Size</th>
+                                    <th class="px-4 py-3 text-left text-gold">Type</th>
+                                    <th class="px-4 py-3 text-left text-gold">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="backupsList">
+                                <tr>
+                                    <td colspan="5" class="p-8 text-center text-dim">No backups found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `
+        };
+
+        // Navigation
+        function loadPage(pageName) {
+            const content = document.getElementById('pageContent');
+            
+            // CRUD pages
+            const crudPages = ['artists', 'services', 'vendors', 'events', 'memberships', 'bookings'];
+            const settingsPages = ['settings', 'theme', 'typography', 'branding', 'social'];
+            
+            if (pageName === 'dashboard') {
+                content.innerHTML = pageTemplates.dashboard;
+            } else if (crudPages.includes(pageName)) {
+                content.innerHTML = pageTemplates.crud(pageName);
+                loadItems(pageName);
+            } else if (settingsPages.includes(pageName)) {
+                content.innerHTML = pageTemplates.settings(pageName);
+                loadSettings(pageName);
+            } else if (pageName === 'system') {
+                content.innerHTML = pageTemplates.system;
+                loadSystemHealth();
+            } else if (pageName === 'sms') {
+                content.innerHTML = pageTemplates.sms;
+            } else if (pageName === 'email') {
+                content.innerHTML = pageTemplates.email;
+            } else if (pageName === 'payments') {
+                content.innerHTML = pageTemplates.payments;
+                loadPayments();
+            } else if (pageName === 'backups') {
+                content.innerHTML = pageTemplates.backups;
+                loadBackups();
+            }
+            
+            // Update active nav
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-gold');
+                link.classList.add('text-dim');
+            });
+            document.querySelector(`[data-page="${pageName}"]`).classList.add('text-gold');
+            document.querySelector(`[data-page="${pageName}"]`).classList.remove('text-dim');
+        }
+
+        // CRUD Functions
+        async function saveItem(collection) {
+            const name = document.getElementById('itemName').value;
+            const description = document.getElementById('itemDescription').value;
+            const image = document.getElementById('itemImage').value;
+            
+            if (!name || !description) {
+                alert('Please fill in name and description');
+                return;
+            }
+            
+            try {
+                await api(`/api/content/${collection}`, 'POST', [{ id: 'item_' + Date.now(), name, description, image, createdAt: new Date().toISOString() }]);
+                alert('Item created successfully!');
+                document.getElementById('itemName').value = '';
+                document.getElementById('itemDescription').value = '';
+                document.getElementById('itemImage').value = '';
+                loadItems(collection);
+            } catch (err) {
+                alert('Error creating item: ' + err.message);
+            }
+        }
+
+        async function loadItems(collection) {
+            try {
+                const items = await api(`/api/content/${collection}`);
+                const data = { items: Array.isArray(items) ? items : [] };
+                const itemsList = document.getElementById('itemsList');
+                
+                if (data.items && data.items.length > 0) {
+                    itemsList.innerHTML = data.items.map(item => `
+                        <div class="p-4 bg-gray rounded border border-gray-800">
+                            <h3 class="text-gold font-semibold">${item.name}</h3>
+                            <p class="text-dim text-sm mb-2">${item.description}</p>
+                            ${item.image ? `<img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded mb-2">` : ''}
+                            <div class="flex gap-2">
+                                <button onclick="editItem('${collection}', '${item.id}')" class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Edit</button>
+                                <button onclick="deleteItem('${collection}', '${item.id}')" class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700">Delete</button>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    itemsList.innerHTML = '<p class="text-dim">No items found</p>';
+                }
+            } catch (err) {
+                document.getElementById('itemsList').innerHTML = '<p class="text-red-400">Error loading items</p>';
+            }
+        }
+
+        async function deleteItem(collection, id) {
+            if (!confirm('Are you sure you want to delete this item?')) return;
+            
+            try {
+                await api(`/api/content/${collection}/${id}`, 'DELETE');
+                alert('Item deleted successfully!');
+                loadItems(collection);
+            } catch (err) {
+                alert('Error deleting item: ' + err.message);
+            }
+        }
+
+        // Settings Functions
+        async function saveSettings(settingType) {
+            const value = document.getElementById('settingsValue').value;
+            
+            if (!value) {
+                alert('Please enter settings');
+                return;
+            }
+            
+            try {
+                await api(`/api/settings`, 'PUT', JSON.parse(value));
+                alert('Settings saved successfully!');
+                loadSettings(settingType);
+            } catch (err) {
+                alert('Error saving settings: ' + err.message);
+            }
+        }
+
+        async function loadSettings(settingType) {
+            try {
+                const data = await api(`/api/settings`);
+                document.getElementById('currentSettings').textContent = JSON.stringify(data, null, 2);
+            } catch (err) {
+                document.getElementById('currentSettings').textContent = 'Error loading settings';
+            }
+        }
+
+        // System Functions
+        async function loadSystemHealth() {
+            try {
+                const data = await api('/api/health');
+                document.getElementById('systemData').textContent = JSON.stringify(data, null, 2);
+            } catch (err) {
+                document.getElementById('systemData').textContent = 'Error loading system data';
+            }
+        }
+
+        // Communication Functions
+        async function sendSMS() {
+            const recipient = document.getElementById('smsRecipient').value;
+            const message = document.getElementById('smsMessage').value;
+            
+            if (!recipient || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            try {
+                await api('/api/sms/send', 'POST', { to: recipient, message });
+                alert('SMS sent successfully!');
+                document.getElementById('smsRecipient').value = '';
+                document.getElementById('smsMessage').value = '';
+            } catch (err) {
+                alert('Error sending SMS: ' + err.message);
+            }
+        }
+
+        function useSMSTemplate(message) {
+            document.getElementById('smsMessage').value = message;
+        }
+
+        async function sendEmail() {
+            const recipient = document.getElementById('emailRecipient').value;
+            const subject = document.getElementById('emailSubject').value;
+            const message = document.getElementById('emailMessage').value;
+            
+            if (!recipient || !subject || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            try {
+                await api('/api/email/send', 'POST', { to: recipient, subject, html: message });
+                alert('Email sent successfully!');
+                document.getElementById('emailRecipient').value = '';
+                document.getElementById('emailSubject').value = '';
+                document.getElementById('emailMessage').value = '';
+            } catch (err) {
+                alert('Error sending email: ' + err.message);
+            }
+        }
+
+        function useEmailTemplate(subject, message) {
+            document.getElementById('emailSubject').value = subject;
+            document.getElementById('emailMessage').value = message;
+        }
+
+        // Payments Functions
+        async function loadPayments() {
+            try {
+                const orders = await api('/api/orders');
+                const data = { transactions: Array.isArray(orders) ? orders : [] };
+                const transactionsList = document.getElementById('transactionsList');
+                
+                if (data.transactions && data.transactions.length > 0) {
+                    transactionsList.innerHTML = data.transactions.map(transaction => `
+                        <tr class="border-t border-gray-800">
+                            <td class="px-4 py-3 text-dim">${transaction.id}</td>
+                            <td class="px-4 py-3">${transaction.customer}</td>
+                            <td class="px-4 py-3 text-gold">$${transaction.amount}</td>
+                            <td class="px-4 py-3">${transaction.type}</td>
+                            <td class="px-4 py-3">
+                                <span class="px-2 py-1 rounded text-xs ${
+                                    transaction.status === 'completed' ? 'bg-green-900 text-green-200' :
+                                    transaction.status === 'pending' ? 'bg-yellow-900 text-yellow-200' :
+                                    'bg-red-900 text-red-200'
+                                }">${transaction.status}</span>
+                            </td>
+                            <td class="px-4 py-3 text-dim">${transaction.date}</td>
+                        </tr>
+                    `).join('');
+                } else {
+                    transactionsList.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-dim">No transactions found</td></tr>';
+                }
+            } catch (err) {
+                document.getElementById('transactionsList').innerHTML = '<tr><td colspan="6" class="p-8 text-center text-red-400">Error loading payments</td></tr>';
+            }
+        }
+
+        // Backup Functions
+        async function createBackup() {
+            try {
+                const allData = {};
+                for (const ct of ['artists','events','videos','vendors','bookings','inquiries','memberships','store_services']) {
+                    const d = await api(`/api/content/${ct}`);
+                    allData[ct] = d;
+                }
+                const settings = await api('/api/settings');
+                allData.settings = settings;
+                const backups = JSON.parse(localStorage.getItem('rb_admin_backups') || '[]');
+                backups.unshift({ id: 'bk_' + Date.now(), data: allData, createdAt: new Date().toISOString() });
+                localStorage.setItem('rb_admin_backups', JSON.stringify(backups.slice(0, 10)));
+                alert('Backup created successfully!');
+                loadBackups();
+            } catch (err) {
+                alert('Error creating backup: ' + err.message);
+            }
+        }
+
+        async function loadBackups() {
+            try {
+                const backups = JSON.parse(localStorage.getItem('rb_admin_backups') || '[]');
+                const data = { backups };
+                const backupsList = document.getElementById('backupsList');
+                
+                if (data.backups && data.backups.length > 0) {
+                    backupsList.innerHTML = data.backups.map(backup => `
+                        <tr class="border-t border-gray-800">
+                            <td class="px-4 py-3 text-dim">${backup.id}</td>
+                            <td class="px-4 py-3">${backup.date}</td>
+                            <td class="px-4 py-3">${backup.size}</td>
+                            <td class="px-4 py-3">
+                                <span class="px-2 py-1 bg-blue-900 text-blue-200 rounded text-xs">${backup.type}</span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex gap-2">
+                                    <button onclick="restoreBackup('${backup.id}')" class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Restore</button>
+                                    <button onclick="deleteBackup('${backup.id}')" class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    `).join('');
+                } else {
+                    backupsList.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-dim">No backups found</td></tr>';
+                }
+            } catch (err) {
+                document.getElementById('backupsList').innerHTML = '<tr><td colspan="5" class="p-8 text-center text-red-400">Error loading backups</td></tr>';
+            }
+        }
+
+        async function restoreBackup(id) {
+            if (!confirm('Are you sure you want to restore this backup? This will overwrite current data.')) return;
+            
+            try {
+                const backups = JSON.parse(localStorage.getItem('rb_admin_backups') || '[]');
+                const bk = backups.find(b => b.id === id);
+                if (bk && bk.data) {
+                    for (const [ct, d] of Object.entries(bk.data)) {
+                        if (ct === 'settings') await api('/api/settings', 'PUT', d);
+                        else await api(`/api/content/${ct}`, 'POST', d);
+                    }
+                }
+                alert('Backup restored successfully!');
+                loadBackups();
+            } catch (err) {
+                alert('Error restoring backup: ' + err.message);
+            }
+        }
+
+        async function deleteBackup(id) {
+            if (!confirm('Are you sure you want to delete this backup?')) return;
+            
+            try {
+                const bks = JSON.parse(localStorage.getItem('rb_admin_backups') || '[]');
+                localStorage.setItem('rb_admin_backups', JSON.stringify(bks.filter(b => b.id !== id)));
+                alert('Backup deleted successfully!');
+                loadBackups();
+            } catch (err) {
+                alert('Error deleting backup: ' + err.message);
+            }
+        }
+
+        // Event Listeners
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const res = await api('/api/admin/login', 'POST', { email, password });
+                if (res.success) {
+                    document.getElementById('loginScreen').classList.add('hidden');
+                    document.getElementById('dashboardScreen').classList.remove('hidden');
+                    loadPage('dashboard');
+                } else {
+                    document.getElementById('loginError').textContent = res.message || 'Login failed';
+                    document.getElementById('loginError').classList.remove('hidden');
+                }
+            } catch (err) {
+                document.getElementById('loginError').textContent = 'Connection error';
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await api('/api/admin/logout', 'POST');
+            } catch (err) {
+                console.error('Logout error:', err);
+            }
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('dashboardScreen').classList.add('hidden');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadPage(link.dataset.page);
+            });
+        });
+
+        // Check if already logged in
+        async function checkAuth() {
+            try {
+                const res = await api('/api/admin/check');
+                if (res.authenticated) {
+                    document.getElementById('loginScreen').classList.add('hidden');
+                    document.getElementById('dashboardScreen').classList.remove('hidden');
+                    loadPage('dashboard');
+                }
+            } catch (err) {
+                // Not authenticated, show login
+            }
+        }
+
+        // Initialize
+        checkAuth();
+    </script>
+</body>
+</html>

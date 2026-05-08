@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: relentless-agent
+  labels:
+    name: relentless-agent
+    app: relentless-agent

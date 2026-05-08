@@ -1,0 +1,43 @@
+# Core Framework (pre-built wheels only)
+fastapi==0.109.0
+uvicorn==0.27.0
+gunicorn==21.2.0
+
+# Database (pre-built wheels)
+psycopg2-binary==2.9.9
+sqlalchemy==2.0.25
+redis==5.0.1
+
+# Authentication (pre-built wheels)
+python-jose[cryptography]==3.3.0
+passlib==1.7.4
+python-multipart==0.0.6
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Rate Limiting (pre-built wheels)
+slowapi==0.1.9
+
+# Payment (pre-built wheels)
+stripe==7.10.0
+
+# Communication (pre-built wheels)
+twilio==8.11.0
+
+# Web Scraping (pre-built wheels)
+playwright==1.40.0
+beautifulsoup4==4.12.3
+requests==2.31.0
+
+# System Monitoring (pre-built wheels)
+psutil==5.9.8
+
+# Environment (pre-built wheels)
+python-dotenv==1.0.0
+
+# Logging (pre-built wheels)
+loguru==0.7.2
+
+# Utilities (pre-built wheels)
+python-dateutil==2.8.2
+pytz==2023.3

@@ -1,0 +1,29 @@
+{
+  "name": "relentless-billionaire-api-worker",
+  "version": "1.0.0",
+  "description": "Unified API Worker for Relentless Billionaire - Admin auth, content CRUD, payments, messaging",
+  "main": "api-worker.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "keywords": [
+    "cloudflare",
+    "worker",
+    "api",
+    "admin",
+    "payments",
+    "messaging"
+  ],
+  "author": "Relentless Billionaire",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "nanoid": "^5.0.4"
+  },
+  "devDependencies": {
+    "wrangler": "^3.22.0"
+  }
+}

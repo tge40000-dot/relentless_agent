@@ -1,0 +1,6 @@
+name = "relentless-admin-subdomain"
+compatibility_date = "2026-04-19"
+
+[[kv_namespaces]]
+binding = "RELENTLESS_KV"
+id = "a5a8acb98514418184de30c1eb8f4dff"

@@ -1,0 +1,223 @@
+[
+  {
+    "timestamp": "2026-04-13T12:03:28.531706",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T12:18:46.909843",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T12:19:49.429782",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T12:25:10.857052",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T12:39:24.597420",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T12:53:22.176155",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T13:11:38.124523",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T13:33:48.970630",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T13:36:55.263452",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T13:49:31.624494",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T13:59:33.873325",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T14:25:44.739052",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T15:30:15.415349",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T17:10:17.177180",
+    "metrics": {
+      "total_revenue": 19500,
+      "monthly_revenue": 19500,
+      "growth_rate": 0,
+      "customer_count": 3,
+      "average_order_value": 4875.0,
+      "conversion_rate": 75.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 58500.0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T17:10:29.814687",
+    "metrics": {
+      "total_revenue": 19500,
+      "monthly_revenue": 19500,
+      "growth_rate": 0,
+      "customer_count": 3,
+      "average_order_value": 4875.0,
+      "conversion_rate": 75.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 58500.0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T17:20:19.273824",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  },
+  {
+    "timestamp": "2026-04-13T17:23:44.366308",
+    "metrics": {
+      "total_revenue": 0.0,
+      "monthly_revenue": 0.0,
+      "growth_rate": 0,
+      "customer_count": 1,
+      "average_order_value": 0.0,
+      "conversion_rate": 100.0,
+      "churn_rate": 5.0,
+      "customer_lifetime_value": 0
+    }
+  }
+]

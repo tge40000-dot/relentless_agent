@@ -1,0 +1,104 @@
+[
+  {
+    "command": "health",
+    "response": "System: online | Updated: 2026-04-09T18:21",
+    "error": null,
+    "at": "2026-04-09T15:09:03.809204"
+  },
+  {
+    "command": "site",
+    "response": "Site: ok",
+    "error": null,
+    "at": "2026-04-09T15:09:08.000099"
+  },
+  {
+    "command": "pipelines",
+    "response": "Artist: 3act/5pend/1book | Biz: 7lead/2prop/1close | Mem: 12act/4trial/2risk",
+    "error": null,
+    "at": "2026-04-09T15:09:09.163276"
+  },
+  {
+    "command": "health",
+    "response": "System: online | Updated: 2026-04-09T18:21",
+    "error": null,
+    "at": "2026-04-09T15:09:31.809310"
+  },
+  {
+    "command": "site",
+    "response": "Site: ok",
+    "error": null,
+    "at": "2026-04-09T15:09:32.433321"
+  },
+  {
+    "command": "health",
+    "response": "System: online | Updated: 2026-04-09T18:21",
+    "error": null,
+    "at": "2026-04-09T15:09:41.981691"
+  },
+  {
+    "command": "site",
+    "response": "Site: ok",
+    "error": null,
+    "at": "2026-04-09T15:09:54.032933"
+  },
+  {
+    "command": "jobs",
+    "response": "Jobs: 1 total | 0 pending | 1 completed",
+    "error": null,
+    "at": "2026-04-09T16:47:52.733028"
+  },
+  {
+    "command": "revenue",
+    "response": "Rev: $297 | Profit: $247 | Margin: 83%",
+    "error": null,
+    "at": "2026-04-09T16:48:04.920505"
+  },
+  {
+    "command": "status",
+    "response": "Command error: name 'check_system_status' is not defined",
+    "error": "Command error: name 'check_system_status' is not defined",
+    "at": "2026-04-09T19:21:14.397857"
+  },
+  {
+    "command": "status",
+    "response": "System Status: Degraded",
+    "error": null,
+    "at": "2026-04-09T19:21:55.374103"
+  },
+  {
+    "command": "metrics",
+    "response": "Error: name 'JOB_MANAGER_URL' is not defined",
+    "error": null,
+    "at": "2026-04-09T19:22:11.676360"
+  },
+  {
+    "command": "metrics",
+    "response": "System Metrics:\nCPU: 20.0%\nMemory: 11.0GB / 16GB\nAPI: 20 req/min\nUptime: 0.2h\nQueue: 1\nErrors: 0",
+    "error": null,
+    "at": "2026-04-09T19:22:48.096461"
+  },
+  {
+    "command": "intake",
+    "response": "Customer Intake:\nPending Jobs: 1\nProcessing: 0\nAwaiting Approval: 0",
+    "error": null,
+    "at": "2026-04-09T19:23:04.226635"
+  },
+  {
+    "command": "bots",
+    "response": "Bot Status:\nlead_generation: 0/1 active\ncrm_intake: 0/1 active\ncrm_scoring: 0/1 active\nflyer_production: 0/1 active\noutreach: 0/1 active\n",
+    "error": null,
+    "at": "2026-04-09T19:23:16.223104"
+  },
+  {
+    "command": "alerts",
+    "response": "Alerts:\nNo alerts",
+    "error": null,
+    "at": "2026-04-09T19:23:29.064704"
+  },
+  {
+    "command": "revenue",
+    "response": "Revenue Dashboard:\nTotal: $297.00\nProfit: $247.00\nMargin: 83.2%\nCompleted: 1\nPending: 1",
+    "error": null,
+    "at": "2026-04-09T19:23:44.494984"
+  }
+]

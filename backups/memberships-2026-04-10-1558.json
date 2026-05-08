@@ -1,0 +1,47 @@
+﻿[
+    {
+        "id":  "tier-starter",
+        "name":  "STARTER",
+        "price":  49,
+        "discount":  10,
+        "perks":  [
+                      "10% off all services",
+                      "Early event access",
+                      "Monthly newsletter",
+                      "Community Discord access"
+                  ],
+        "featured":  false,
+        "status":  "active"
+    },
+    {
+        "id":  "tier-pro",
+        "name":  "PRO",
+        "price":  199,
+        "discount":  25,
+        "perks":  [
+                      "25% off all services",
+                      "Priority booking",
+                      "Free event flyer per month",
+                      "1-on-1 monthly check-in",
+                      "VIP event access"
+                  ],
+        "featured":  true,
+        "status":  "active"
+    },
+    {
+        "id":  "tier-elite",
+        "name":  "ELITE",
+        "price":  499,
+        "discount":  40,
+        "perks":  [
+                      "40% off all services",
+                      "Unlimited priority booking",
+                      "2 free flyers per month",
+                      "Weekly strategy calls",
+                      "VIP + backstage access",
+                      "Featured on homepage"
+                  ],
+        "featured":  false,
+        "status":  "active"
+    }
+]

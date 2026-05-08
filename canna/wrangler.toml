@@ -1,0 +1,103 @@
+name = "relentless-billionaire-api"
+main = "api-worker.js"
+compatibility_date = "2026-04-12"
+
+# KV Namespaces
+[[kv_namespaces]]
+binding = "ADMIN_AUTH"
+id = "a5a8acb98514418184de30c1eb8f4dff"
+preview_id = "YOUR_ADMIN_AUTH_KV_PREVIEW_ID"
+
+# New KV Namespaces for Hybrid Architecture
+[[kv_namespaces]]
+binding = "RB_TASKS"
+id = "YOUR_RB_TASKS_ID"
+preview_id = "YOUR_RB_TASKS_PREVIEW_ID"
+
+[[kv_namespaces]]
+binding = "RB_ARTISTS"
+id = "YOUR_RB_ARTISTS_ID"
+preview_id = "YOUR_RB_ARTISTS_PREVIEW_ID"
+
+[[kv_namespaces]]
+binding = "RB_TIERS"
+id = "YOUR_RB_TIERS_ID"
+preview_id = "YOUR_RB_TIERS_PREVIEW_ID"
+
+[[kv_namespaces]]
+binding = "RB_AI_QUEUE"
+id = "YOUR_RB_AI_QUEUE_ID"
+preview_id = "YOUR_RB_AI_QUEUE_PREVIEW_ID"
+
+[[kv_namespaces]]
+binding = "RB_MEDIA_MAP"
+id = "YOUR_RB_MEDIA_MAP_ID"
+preview_id = "YOUR_RB_MEDIA_MAP_PREVIEW_ID"
+
+# R2 Buckets
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "rbb"
+
+# New R2 Buckets for Hybrid Architecture
+[[r2_buckets]]
+binding = "RB_MEDIA_BUCKET"
+bucket_name = "rb-media"
+
+[[r2_buckets]]
+binding = "RB_BEATS_BUCKET"
+bucket_name = "rb-beats"
+
+[[r2_buckets]]
+binding = "RB_ARTIST_BUCKET"
+bucket_name = "rb-artist-assets"
+
+[[r2_buckets]]
+binding = "RB_AI_BUCKET"
+bucket_name = "rb-ai-ingest"
+
+# Environment Variables
+[vars]
+ADMIN_EMAIL = "relentlessbillionaire@outlook.com"
+EMAIL_FROM = "noreply@relentlessbillionaire.com"
+TELNYX_FROM = "+1YOURTELNYXNUMBER"
+
+# Secrets (use `wrangler secret put <KEYNAME>`)
+# Required secrets:
+# - STRIPE_SECRET_KEY
+# - STRIPE_WEBHOOK_SECRET
+# - TELNYX_API_KEY
+# - RESEND_API_KEY
+
+# Example commands to set secrets:
+# wrangler secret put STRIPE_SECRET_KEY
+# wrangler secret put STRIPE_WEBHOOK_SECRET
+# wrangler secret put TELNYX_API_KEY
+# wrangler secret put RESEND_API_KEY
+
+# Routes (if deploying to custom domain)
+# routes = [
+#   { pattern = "api.relentlessbillionaire.com/*", zone_name = "relentlessbillionaire.com" }
+# ]
+
+# Service Bindings for Hybrid Architecture
+# These allow api-worker to communicate with specialized workers
+[[services]]
+binding = "MEDIA_WORKER"
+service = "media-worker"
+
+[[services]]
+binding = "BEATS_WORKER"
+service = "beats-worker"
+
+[[services]]
+binding = "AI_WORKER"
+service = "ai-worker"
+
+[[services]]
+binding = "DASHBOARD_WORKER"
+service = "dashboard-worker"
+
+[[services]]
+binding = "OPS_WORKER"
+service = "ops-worker"
