@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Adry’anna Couture</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-ivory: #f7f4f2;
+      --bg-rose: #eed7d2;
+      --bg-blush: #f3d6d9;
+      --text-main: #1a1a1a;
+      --text-soft: #3a2f2f;
+      --accent-mauve: #c9a8a8;
+      --accent-gold: #d9c7a0;
+      --border-soft: rgba(0, 0, 0, 0.06);
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-ivory);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(247, 244, 242, 0.9);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.2rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-mauve);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    section {
+      padding: 4rem 1.5rem;
+    }
+
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-mauve);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 2.1rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-soft);
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 5rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 3.4rem;
+      line-height: 1.05;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-subtitle {
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-soft);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-text {
+      font-size: 0.98rem;
+      max-width: 32rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.7rem 1.6rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--bg-rose);
+      border-color: var(--bg-rose);
+    }
+
+    .btn-primary:hover {
+      background: var(--bg-blush);
+      border-color: var(--bg-blush);
+    }
+
+    .btn-ghost {
+      border-color: var(--border-soft);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent-mauve);
+    }
+
+    .hero-image-wrap {
+      background: var(--bg-rose);
+      border-radius: 1.75rem;
+      padding: 1.25rem;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+      min-height: 320px;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .hero-image-placeholder {
+      border-radius: 1.25rem;
+      background: linear-gradient(145deg, #f3d6d9, #c9a8a8);
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 1.5rem;
+      color: #fff;
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+    }
+
+    .hero-image-placeholder span {
+      max-width: 10rem;
+    }
+
+    /* Latest release */
+    .card {
+      border-radius: 1.5rem;
+      border: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.7);
+      padding: 1.75rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 1.75rem;
+      align-items: center;
+    }
+
+    .release-cover {
+      border-radius: 1.1rem;
+      background: linear-gradient(135deg, #c9a8a8, #f3d6d9);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .release-meta-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .release-meta-sub {
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-mauve);
+      margin-bottom: 0.9rem;
+    }
+
+    .release-description {
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .platforms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Artist snapshot */
+    .snapshot {
+      max-width: 40rem;
+      font-size: 0.98rem;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      border-radius: 1.25rem;
+      background: #e6d7d3;
+      aspect-ratio: 3 / 4;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255, 255, 255, 0.4), transparent);
+      mix-blend-mode: soft-light;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      border-radius: 1.5rem;
+      border: 1px solid var(--border-soft);
+      padding: 1.75rem;
+      background: rgba(255, 255, 255, 0.7);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .newsletter-text {
+      max-width: 26rem;
+      font-size: 0.95rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .input {
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      padding: 0.7rem 1rem;
+      min-width: 220px;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.9);
+      outline: none;
+    }
+
+    .input:focus {
+      border-color: var(--accent-mauve);
+    }
+
+    /* About */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .about-text {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+    }
+
+    .timeline {
+      border-left: 1px solid var(--border-soft);
+      padding-left: 1.25rem;
+      display: grid;
+      gap: 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .timeline-item-year {
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-mauve);
+    }
+
+    /* Music grid */
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .music-card {
+      border-radius: 1.25rem;
+      border: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.7);
+      padding: 1rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .music-cover {
+      border-radius: 0.9rem;
+      background: linear-gradient(135deg, #f3d6d9, #c9a8a8);
+      aspect-ratio: 1 / 1;
+    }
+
+    .music-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1rem;
+    }
+
+    .music-meta {
+      font-size: 0.8rem;
+      color: var(--accent-mauve);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .music-play {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+    .music-play:hover {
+      opacity: 1;
+    }
+
+    /* Visuals */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .video-card {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #e6d7d3;
+      position: relative;
+      aspect-ratio: 16 / 9;
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: "Playfair Display", serif;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.15));
+    }
+
+    .video-label {
+      font-size: 0.9rem;
+      margin-top: 0.4rem;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .field-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+      color: var(--accent-mauve);
+    }
+
+    textarea {
+      border-radius: 1rem;
+      border: 1px solid var(--border-soft);
+      padding: 0.8rem 1rem;
+      min-height: 120px;
+      resize: vertical;
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.9);
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: var(--accent-mauve);
+    }
+
+    .contact-info {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .contact-info strong {
+      font-weight: 500;
+    }
+
+    .contact-info a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 2rem 1.5rem;
+      background: rgba(247, 244, 242, 0.95);
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .card,
+      .two-col,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 4.5rem;
+      }
+
+      .hero-title {
+        font-size: 2.6rem;
+      }
+
+      .nav {
+        padding-inline: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      section {
+        padding-inline: 1.25rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .newsletter {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <nav class="nav">
+        <div class="nav-logo">Adry’anna Couture</div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#music">Music</a>
+          <a href="#visuals">Visuals</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section id="home" class="hero">
+        <div class="section-inner hero-grid">
+          <div>
+            <div class="section-label">Artist</div>
+            <h1 class="hero-title">Adry’anna<br />Couture</h1>
+            <p class="hero-subtitle">“Float like a butterfly. Sting like a bee.”</p>
+            <p class="hero-text">
+              California‑born singer, rapper, and writer blending church‑raised soul with street‑sharp confidence. A voice shaped by poetry, resilience, and reinvention—soft when she chooses, deadly when she needs to be.
+            </p>
+            <div class="hero-ctas">
+              <button class="btn btn-primary">Listen</button>
+              <button class="btn btn-ghost">Watch</button>
+              <button class="btn btn-ghost">Bookings</button>
+            </div>
+          </div>
+          <div class="hero-image-wrap">
+            <div class="hero-image-placeholder">
+              <span>Cinematic portrait space for Adry’anna’s key visual.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LATEST RELEASE -->
+      <section>
+        <div class="section-inner">
+          <div class="section-label">Latest Release</div>
+          <h2 class="section-title">No No, Pt. 2 — Out Now</h2>
+          <div class="card">
+            <div class="release-cover">
+              <span>No No, Pt. 2<br />Single Artwork</span>
+            </div>
+            <div>
+              <div class="release-meta-title">No No, Pt. 2</div>
+              <div class="release-meta-sub">Single · 2025</div>
+              <p class="release-description">
+                The new era begins with a sharper voice, a softer edge, and a story she’s finally ready to tell. “No No, Pt. 2” is a cinematic refusal—a boundary drawn in blush and steel.
+              </p>
+              <div class="platforms">
+                <div class="pill">Spotify</div>
+                <div class="pill">Apple Music</div>
+                <div class="pill">YouTube</div>
+                <div class="pill">Tidal</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARTIST SNAPSHOT + GALLERY + NEWSLETTER -->
+      <section>
+        <div class="section-inner" style="display: grid; gap: 3rem;">
+          <div>
+            <div class="section-label">Snapshot</div>
+            <h2 class="section-title">A feminine edge with a fighter’s heart.</h2>
+            <p class="snapshot">
+              Adry’anna Couture is a California‑born singer, rapper, and writer blending melodic R&amp;B textures with confident rap cadences. Her sound is feminine, emotional, and cinematic—rooted in church‑trained vocals, poetic writing, and a fighter’s mentality.
+            </p>
+          </div>
+
+          <div>
+            <div class="section-label">Visual Gallery</div>
+            <div class="gallery-grid">
+              <div class="gallery-item"></div>
+              <div class="gallery-item"></div>
+              <div class="gallery-item"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="section-label">Stay Close</div>
+            <div class="newsletter">
+              <div class="newsletter-text">
+                Be the first to hear new music, visuals, and announcements from Adry’anna Couture. No spam—just carefully curated moments.
+              </div>
+              <form class="newsletter-form">
+                <input class="input" type="email" placeholder="Your email address" />
+                <button type="submit" class="btn btn-primary">Join List</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="section-inner">
+          <div class="section-label">About</div>
+          <h2 class="section-title">Her story, in soft focus.</h2>
+          <div class="two-col">
+            <div class="about-text">
+              <p>
+                Adry’anna Couture began singing in the church, where her voice was first recognized for its warmth and emotional depth. She grew into a writer through poetry—turning her journals into verses, and her verses into songs.
+              </p>
+              <p>
+                Her music blends melodic R&amp;B textures with confident rap cadences, creating a sound that is both soft and unshakeable. She carries the duality of her influences: the tenderness of gospel, the grit of California streets, and the elegance of feminine artistry.
+              </p>
+              <p>
+                With a catalog spanning seven years and a hybrid indie structure through EMPIRE Distribution and her own imprint GT Digital, Adry’anna is entering a new era—refined, intentional, and visually elevated. This is her rebirth.
+              </p>
+            </div>
+            <div>
+              <div class="section-label">Timeline</div>
+              <div class="timeline">
+                <div>
+                  <div class="timeline-item-year">2018</div>
+                  <div>Debut single <em>HUH Whaaat</em> introduces her voice to the world.</div>
+                </div>
+                <div>
+                  <div class="timeline-item-year">2019</div>
+                  <div><em>11:11</em> EP expands her sound and storytelling.</div>
+                </div>
+                <div>
+                  <div class="timeline-item-year">2021</div>
+                  <div><em>Speak Up</em> and <em>Cum Outside</em> mark a bolder, more confident era.</div>
+                </div>
+                <div>
+                  <div class="timeline-item-year">2024</div>
+                  <div><em>Make Up Sex</em> leans into intimacy, vulnerability, and edge.</div>
+                </div>
+                <div>
+                  <div class="timeline-item-year">2025</div>
+                  <div><em>No No, Pt. 2</em> signals a new boundary and a new beginning.</div>
+                </div>
+                <div>
+                  <div class="timeline-item-year">2026</div>
+                  <div>The Rebrand Era—cinematic visuals, elevated storytelling, and a refined identity.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MUSIC -->
+      <section id="music">
+        <div class="section-inner">
+          <div class="section-label">Music</div>
+          <h2 class="section-title">Discography</h2>
+          <div class="music-grid">
+            <div class="music-card">
+              <div class="music-cover"></div>
+              <div class="music-title">No No, Pt. 2</div>
+              <div class="music-meta">Single · 2025</div>
+              <div class="music-play">Play</div>
+            </div>
+            <div class="music-card">
+              <div class="music-cover"></div>
+              <div class="music-title">Make Up Sex</div>
+              <div class="music-meta">Single · 2024</div>
+              <div class="music-play">Play</div>
+            </div>
+            <div class="music-card">
+              <div class="music-cover"></div>
+              <div class="music-title">Cum Outside (feat. Maxi Bravo)</div>
+              <div class="music-meta">Single · 2021</div>
+              <div class="music-play">Play</div>
+            </div>
+            <div class="music-card">
+              <div class="music-cover"></div>
+              <div class="music-title">Speak Up</div>
+              <div class="music-meta">Single · 2021</div>
+              <div class="music-play">Play</div>
+            </div>
+            <div class="music-card">
+              <div class="music-cover"></div>
+              <div class="music-title">11:11</div>
+              <div class="music-meta">EP · 2019</div>
+              <div class="music-play">Play</div>
+            </div>
+            <div class="music-card">
+              <div class="music-cover"></div>
+              <div class="music-title">HUH Whaaat</div>
+              <div class="music-meta">Single · 2018</div>
+              <div class="music-play">Play</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISUALS -->
+      <section id="visuals">
+        <div class="section-inner">
+          <div class="section-label">Visuals</div>
+          <h2 class="section-title">Cinematic moments.</h2>
+          <div class="video-grid">
+            <div>
+              <div class="video-card">
+                <div class="video-overlay">
+                  <div>
+                    No No, Pt. 2<br />
+                    <span class="video-label">Official Video</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="video-card">
+                <div class="video-overlay">
+                  <div>
+                    Make Up Sex<br />
+                    <span class="video-label">Official Visual</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="video-card">
+                <div class="video-overlay">
+                  <div>
+                    Cum Outside<br />
+                    <span class="video-label">Official Visual</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-inner">
+          <div class="section-label">Contact</div>
+          <h2 class="section-title">Bookings &amp; inquiries.</h2>
+          <div class="contact-grid">
+            <form class="contact-form">
+              <div>
+                <div class="field-label">Name</div>
+                <input class="input" type="text" placeholder="Your name" />
+              </div>
+              <div>
+                <div class="field-label">Email</div>
+                <input class="input" type="email" placeholder="Your email" />
+              </div>
+              <div>
+                <div class="field-label">Message</div>
+                <textarea placeholder="Tell us about your project, event, or inquiry."></textarea>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+              </div>
+            </form>
+            <div class="contact-info">
+              <p><strong>Bookings &amp; Management</strong></p>
+              <p>GT Digital / Adry’anna Couture</p>
+              <p>
+                Email:
+                <a href="mailto:bookings@adryannacouture.com">bookings@adryannacouture.com</a>
+              </p>
+              <p style="margin-top: 1rem;">
+                For collaborations, visual campaigns, and brand partnerships, please include timelines, budget ranges, and any relevant links.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>© <span id="year"></span> Adry’anna Couture. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#music">Music</a>
+          <a href="#visuals">Visuals</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-social">
+          <span>IG</span>
+          <span>YouTube</span>
+          <span>TikTok</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
