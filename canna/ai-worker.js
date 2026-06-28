@@ -14,6 +14,11 @@ export default {
     const url = new URL(request.url);
     const { pathname } = url;
 
+    // Validate required environment bindings
+    if (!env.RB_AI_QUEUE || !env.RB_TASKS) {
+      return json({ error: "Missing required bindings (RB_AI_QUEUE, RB_TASKS)" }, 500);
+    }
+
     // CORS preflight
     if (request.method === "OPTIONS") {
       return cors(new Response(null, { status: 204 }));
@@ -175,7 +180,7 @@ async function handleGenerate(request, env) {
   }
 }
 
-async function handleProcess(request, env) {
+async function handleProcess(request, env, ctx) {
   try {
     const { taskId } = await request.json();
 
@@ -197,14 +202,14 @@ async function handleProcess(request, env) {
     await env.RB_TASKS.put(`task:${taskId}`, JSON.stringify(task));
 
     // In production, this would call external AI APIs
-    // For now, simulate processing
-    setTimeout(async () => {
+    // For now, simulate processing using ctx.waitUntil for background execution
+    ctx.waitUntil((async () => {
       task.status = "completed";
       task.completedAt = Date.now();
       task.output = { message: "Processing completed - integrate with external AI API" };
       await env.RB_AI_QUEUE.put(`task:${taskId}`, JSON.stringify(task));
       await env.RB_TASKS.put(`task:${taskId}`, JSON.stringify(task));
-    }, 1000);
+    })());
 
     return json({ task, message: "Task processing started" });
   } catch (error) {
@@ -230,7 +235,11 @@ async function handleGetTask(taskId, env) {
 
 function cors(response) {
   const headers = new Headers(response.headers);
-  headers.set("Access-Control-Allow-Origin", "*");
+  // Use environment variable for CORS origin, fallback to wildcard for development
+  const corsOrigin = typeof process !== 'undefined' && process.env?.CORS_ORIGIN 
+    ? process.env.CORS_ORIGIN 
+    : "*";
+  headers.set("Access-Control-Allow-Origin", corsOrigin);
   headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   return new Response(response.body, { status: response.status, headers });
 }

@@ -11,6 +11,9 @@ const MediaAdmin = ({ apiBaseUrl = 'https://api.relentlessbillionaire.com' }) =>
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
+  // R2 base URL - should be configurable via environment in production
+  const r2BaseUrl = 'https://0a7be075f32d9d615349825b83ab8fcb.r2.cloudflarestorage.com/rbb';
+
   const categories = [
     { value: 'videos', label: 'Videos' },
     { value: 'images', label: 'Images' },
@@ -212,7 +215,7 @@ const MediaAdmin = ({ apiBaseUrl = 'https://api.relentlessbillionaire.com' }) =>
                 <div className="file-preview">
                   {file.key.match(/\.(jpg|jpeg|png|gif|webp)$/i) ? (
                     <img
-                      src={`https://0a7be075f32d9d615349825b83ab8fcb.r2.cloudflarestorage.com/rbb/${file.key}`}
+                      src={`${r2BaseUrl}/${file.key}`}
                       alt={file.key}
                     />
                   ) : (
@@ -230,7 +233,7 @@ const MediaAdmin = ({ apiBaseUrl = 'https://api.relentlessbillionaire.com' }) =>
 
                 <div className="file-actions">
                   <button
-                    onClick={() => copyToClipboard(`https://0a7be075f32d9d615349825b83ab8fcb.r2.cloudflarestorage.com/rbb/${file.key}`)}
+                    onClick={() => copyToClipboard(`${r2BaseUrl}/${file.key}`)}
                     className="action-button copy-button"
                     title="Copy URL"
                   >

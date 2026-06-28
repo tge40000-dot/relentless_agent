@@ -53,10 +53,12 @@ const BeatsMarketplace = ({
 
   const filteredBeats = beats.filter(beat => {
     if (filter === 'all') return true;
-    if (filter === 'hiphop') return beat.genre === 'Hip Hop';
-    if (filter === 'trap') return beat.genre === 'Trap';
-    if (filter === 'rnb') return beat.genre === 'R&B';
-    if (filter === 'electronic') return beat.genre === 'Electronic';
+    // Case-insensitive genre comparison
+    const normalizedGenre = beat.genre?.toLowerCase() || '';
+    if (filter === 'hiphop') return normalizedGenre === 'hip hop' || normalizedGenre === 'hip-hop';
+    if (filter === 'trap') return normalizedGenre === 'trap';
+    if (filter === 'rnb') return normalizedGenre === 'r&b' || normalizedGenre === 'rnb';
+    if (filter === 'electronic') return normalizedGenre === 'electronic';
     return true;
   });
 

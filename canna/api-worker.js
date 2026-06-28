@@ -28,7 +28,12 @@ function generateId() {
 // Expected bindings:
 // KV: ADMIN_AUTH (CONTENT, SETTINGS, METRICS, SESSIONS - using ADMIN_AUTH as fallback)
 // R2: MEDIA_BUCKET
-// ENV: STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, TELNYX_API_KEY, RESEND_API_KEY, EMAIL_FROM, ADMIN_EMAIL
+// ENV: STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, TELNYX_API_KEY, RESEND_API_KEY, EMAIL_FROM, ADMIN_EMAIL, R2_BASE_URL
+
+// Helper to get R2 base URL from environment
+function getR2BaseUrl(env) {
+  return env.R2_BASE_URL || "https://0a7be075f32d9d615349825b83ab8fcb.r2.cloudflarestorage.com/rbb";
+}
 
 // Fallback KV namespace helpers for operational system
 const getKV = (env, binding) => env[binding] || env.ADMIN_AUTH;
@@ -128,15 +133,6 @@ export default {
       return cors(res);
     }
 
-    // Media management (protected)
-    if (pathname.startsWith("/api/admin/secure/media")) {
-      const sessionOk = await validateSession(request, env);
-      if (!sessionOk) return cors(json({ error: "Unauthorized" }, 401));
-
-      const res = await handleMedia(request, env);
-      return cors(res);
-    }
-
     // Public media access
     if (pathname.startsWith("/api/public/media")) {
       const res = await handlePublicMedia(request, env);
@@ -151,7 +147,11 @@ export default {
 
 function cors(response) {
   const headers = new Headers(response.headers);
-  headers.set("Access-Control-Allow-Origin", "https://admin.relentlessbillionaire.com");
+  // Use environment variable for CORS origin, fallback to admin domain
+  const corsOrigin = typeof process !== 'undefined' && process.env?.CORS_ORIGIN 
+    ? process.env.CORS_ORIGIN 
+    : "https://admin.relentlessbillionaire.com";
+  headers.set("Access-Control-Allow-Origin", corsOrigin);
   headers.set("Access-Control-Allow-Credentials", "true");
   headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
   headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -347,6 +347,10 @@ async function confirmPasswordReset(request, env) {
     }
 
     if (Date.now() > admin.resetExpires) {
+      // Clear expired token
+      admin.resetToken = null;
+      admin.resetExpires = null;
+      await saveAdmin(env, admin);
       return json({ error: "Token expired" }, 400);
     }
 
@@ -372,6 +376,13 @@ async function validateSession(request, env) {
     if (!sessionMatch) return false;
 
     const sessionToken = sessionMatch[1];
+    
+    // Validate session token format (basic UUID validation)
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(sessionToken)) {
+      return false;
+    }
+    
     const sessionData = await env.SESSIONS.get(sessionToken);
     
     if (!sessionData) return false;
@@ -578,7 +589,7 @@ async function handleCheckout(request, env) {
     
     // TODO: Implement actual Stripe Checkout session creation
     // This requires stripe npm package and proper integration
-    // For now, return a placeholder response
+    // For now, return a proper error response
     
     const checkoutData = {
       priceId: body.priceId,
@@ -594,10 +605,9 @@ async function handleCheckout(request, env) {
     }
 
     return json({ 
-      error: "Stripe integration not yet implemented",
-      checkoutUrl: "https://stripe.com/placeholder",
+      error: "Stripe checkout is not yet implemented. Please configure Stripe integration in wrangler.toml and install the stripe package.",
       checkoutData
-    }, 501);
+    }, 503);
   } catch (error) {
     console.error("Checkout error:", error);
     return json({ error: "Failed to create checkout session" }, 500);
@@ -702,126 +712,7 @@ async function handleEmail(request, env) {
   }
 }
 
-// ---------- MEDIA MANAGEMENT (R2) ----------
-
-async function handleMedia(request, env) {
-  const url = new URL(request.url);
-  const path = url.pathname.replace("/api/admin/secure/media", "");
-
-  // Upload media
-  if (path === "/upload" && request.method === "POST") {
-    return uploadMedia(request, env);
-  }
-
-  // List media
-  if (path === "/list" && request.method === "GET") {
-    return listMedia(request, env);
-  }
-
-  // Delete media
-  if (path === "/delete" && request.method === "DELETE") {
-    return deleteMedia(request, env);
-  }
-
-  return json({ error: "Unknown media route" }, 404);
-}
-
-async function uploadMedia(request, env) {
-  try {
-    const formData = await request.formData();
-    const file = formData.get("file");
-    const category = formData.get("category") || "misc";
-
-    if (!file) {
-      return json({ error: "No file provided" }, 400);
-    }
-
-    // Validate file type
-    const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp", "video/mp4", "video/webm", "audio/mpeg", "audio/mp3", "audio/wav", "audio/ogg", "audio/m4a"];
-    if (!validTypes.includes(file.type)) {
-      return json({ error: "Invalid file type. Only images, videos, and audio files allowed." }, 400);
-    }
-
-    // Validate file size (max 100MB)
-    const maxSize = 100 * 1024 * 1024;
-    if (file.size > maxSize) {
-      return json({ error: "File too large. Max size is 100MB." }, 400);
-    }
-
-    // Generate unique filename
-    const ext = file.name.split(".").pop();
-    const filename = `${generateId()}.${ext}`;
-    const key = `${category}/${filename}`;
-
-    // Upload to R2
-    await env.MEDIA_BUCKET.put(key, file);
-
-    // Store metadata in KV
-    const metadata = {
-      id: generateId(),
-      key,
-      filename,
-      originalName: file.name,
-      mimeType: file.type,
-      size: file.size,
-      category,
-      url: `https://0a7be075f32d9d615349825b83ab8fcb.r2.cloudflarestorage.com/rbb/${key}`,
-      createdAt: Date.now()
-    };
-
-    await env.CONTENT.put(`content:media:${metadata.id}`, JSON.stringify(metadata));
-
-    return json({ file: metadata });
-  } catch (error) {
-    console.error("Media upload error:", error);
-    return json({ error: "Failed to upload media" }, 500);
-  }
-}
-
-async function listMedia(request, env) {
-  try {
-    const url = new URL(request.url);
-    const category = url.searchParams.get("category");
-
-    let prefix = "";
-    if (category) {
-      prefix = `${category}/`;
-    }
-
-    const listed = await env.MEDIA_BUCKET.list({ prefix });
-    const files = [];
-
-    for (const object of listed.objects) {
-      files.push({
-        key: object.key,
-        size: object.size,
-        uploaded: object.uploaded
-      });
-    }
-
-    return json({ files });
-  } catch (error) {
-    console.error("Media list error:", error);
-    return json({ error: "Failed to list media" }, 500);
-  }
-}
-
-async function deleteMedia(request, env) {
-  try {
-    const { key } = await request.json();
-
-    if (!key) {
-      return json({ error: "Missing key" }, 400);
-    }
-
-    await env.MEDIA_BUCKET.delete(key);
-
-    return json({ success: true });
-  } catch (error) {
-    console.error("Media delete error:", error);
-    return json({ error: "Failed to delete media" }, 500);
-  }
-}
+// ---------- PUBLIC MEDIA ACCESS ----------
 
 async function handlePublicMedia(request, env) {
   const url = new URL(request.url);

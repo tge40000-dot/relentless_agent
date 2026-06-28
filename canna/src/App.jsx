@@ -8,11 +8,20 @@ function App() {
 
   useEffect(() => {
     // Load user data from localStorage or auth system
-    const userData = {
-      membershipTier: localStorage.getItem('rb_membership_tier') || null,
-      role: localStorage.getItem('rb_auth_user') || 'guest'
-    };
-    setUser(userData);
+    try {
+      const userData = {
+        membershipTier: localStorage.getItem('rb_membership_tier') || null,
+        role: localStorage.getItem('rb_auth_user') || 'guest'
+      };
+      setUser(userData);
+    } catch (error) {
+      // localStorage might be disabled (private browsing, security settings)
+      console.error('Failed to access localStorage:', error);
+      setUser({
+        membershipTier: null,
+        role: 'guest'
+      });
+    }
   }, []);
 
   return (

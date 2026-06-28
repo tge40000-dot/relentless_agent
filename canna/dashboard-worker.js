@@ -15,6 +15,11 @@ export default {
     const url = new URL(request.url);
     const { pathname } = url;
 
+    // Validate required environment bindings
+    if (!env.RB_ARTISTS || !env.RB_TASKS || !env.RB_TIERS) {
+      return json({ error: "Missing required bindings (RB_ARTISTS, RB_TASKS, RB_TIERS)" }, 500);
+    }
+
     // CORS preflight
     if (request.method === "OPTIONS") {
       return cors(new Response(null, { status: 204 }));
@@ -363,7 +368,11 @@ async function handleAdminEndpoint(pathname, env) {
 
 function cors(response) {
   const headers = new Headers(response.headers);
-  headers.set("Access-Control-Allow-Origin", "*");
+  // Use environment variable for CORS origin, fallback to wildcard for development
+  const corsOrigin = typeof process !== 'undefined' && process.env?.CORS_ORIGIN 
+    ? process.env.CORS_ORIGIN 
+    : "*";
+  headers.set("Access-Control-Allow-Origin", corsOrigin);
   headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS");
   return new Response(response.body, { status: response.status, headers });
 }

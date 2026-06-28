@@ -10,10 +10,20 @@ function generateId() {
   return crypto.randomUUID();
 }
 
+// Helper to get R2 base URL from environment
+function getR2BaseUrl(env) {
+  return env.R2_BASE_URL || "https://0a7be075f32d9d615349825b83ab8fcb.r2.cloudflarestorage.com";
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const { pathname } = url;
+
+    // Validate required environment bindings
+    if (!env.RB_MEDIA_MAP) {
+      return json({ error: "Missing required binding (RB_MEDIA_MAP)" }, 500);
+    }
 
     // CORS preflight
     if (request.method === "OPTIONS") {
@@ -103,7 +113,7 @@ async function handleUpload(request, env) {
       size: file.size,
       category,
       bucket,
-      url: `https://0a7be075f32d9d615349825b83ab8fcb.r2.cloudflarestorage.com/${bucket}/${key}`,
+      url: `${getR2BaseUrl(env)}/${bucket}/${key}`,
       createdAt: Date.now()
     };
 
@@ -131,7 +141,7 @@ async function handleSignedUrl(request, env) {
 
     // In production, this would generate a signed URL using R2's presigned URLs
     // For now, return the public URL
-    const url = `https://0a7be075f32d9d615349825b83ab8fcb.r2.cloudflarestorage.com/${bucket}/${key}`;
+    const url = `${getR2BaseUrl(env)}/${bucket}/${key}`;
 
     return json({ url, expiresIn });
   } catch (error) {
@@ -226,7 +236,11 @@ function getBucket(env, bucketName) {
 
 function cors(response) {
   const headers = new Headers(response.headers);
-  headers.set("Access-Control-Allow-Origin", "*");
+  // Use environment variable for CORS origin, fallback to wildcard for development
+  const corsOrigin = typeof process !== 'undefined' && process.env?.CORS_ORIGIN 
+    ? process.env.CORS_ORIGIN 
+    : "*";
+  headers.set("Access-Control-Allow-Origin", corsOrigin);
   headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   return new Response(response.body, { status: response.status, headers });
 }

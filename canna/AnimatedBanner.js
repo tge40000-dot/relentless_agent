@@ -68,7 +68,7 @@ const AnimatedBanner = ({
           <div 
             className="banner-slide"
             style={{
-              backgroundImage: currentBanner.image ? `url(${currentBanner.image})` : undefined,
+              backgroundImage: sanitizeCssUrl(currentBanner.image),
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }}
@@ -401,6 +401,21 @@ const AnimatedBanner = ({
 // Helper function to check if badge exists
 function currentBadge(badge) {
   return badge && badge.text && badge.type;
+}
+
+// Helper function to sanitize URL for CSS
+function sanitizeCssUrl(url) {
+  if (!url) return undefined;
+  try {
+    const parsed = new URL(url);
+    // Only allow http/https protocols
+    if (!['http:', 'https:'].includes(parsed.protocol)) {
+      return undefined;
+    }
+    return `url("${url}")`;
+  } catch {
+    return undefined;
+  }
 }
 
 export default AnimatedBanner;
