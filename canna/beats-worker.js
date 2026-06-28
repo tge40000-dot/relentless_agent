@@ -119,14 +119,25 @@ async function handleUploadBeat(request, env) {
       return json({ error: "Missing required fields" }, 400);
     }
 
+    // Validate numeric fields
+    const parsedPrice = parseFloat(price);
+    if (isNaN(parsedPrice) || parsedPrice < 0) {
+      return json({ error: "Invalid price value" }, 400);
+    }
+
+    const parsedBpm = bpm != null ? parseInt(bpm) : 120;
+    if (isNaN(parsedBpm) || parsedBpm < 0 || parsedBpm > 300) {
+      return json({ error: "Invalid BPM value (must be 0-300)" }, 400);
+    }
+
     const beat = {
       id: generateId(),
       title,
       artist,
       genre: genre || "Hip-Hop",
-      bpm: bpm || 120,
+      bpm: parsedBpm,
       key: key || "C",
-      price: parseFloat(price),
+      price: parsedPrice,
       audioUrl,
       coverImageUrl: coverImageUrl || null,
       createdAt: Date.now(),
@@ -176,6 +187,12 @@ async function handleSearchBeats(request, env) {
       return json({ error: "Missing search query" }, 400);
     }
 
+    // Sanitize search query to prevent injection
+    const sanitizedQuery = query.replace(/[^a-zA-Z0-9\s\-]/g, '').trim();
+    if (sanitizedQuery.length === 0) {
+      return json({ error: "Invalid search query" }, 400);
+    }
+
     const beats = [];
     const list = await env.RB_ARTISTS.list({ prefix: "beats:" });
 
@@ -184,13 +201,13 @@ async function handleSearchBeats(request, env) {
       if (beatData) {
         const beat = JSON.parse(beatData);
         const searchFields = [beat.title, beat.artist, beat.genre].join(" ").toLowerCase();
-        if (searchFields.includes(query.toLowerCase())) {
+        if (searchFields.includes(sanitizedQuery.toLowerCase())) {
           beats.push(beat);
         }
       }
     }
 
-    return json({ beats, query });
+    return json({ beats, query: sanitizedQuery });
   } catch (error) {
     console.error("Search beats error:", error);
     return json({ error: "Failed to search beats" }, 500);
@@ -279,7 +296,9 @@ async function handleDelivery(request, env) {
 
 function cors(response) {
   const headers = new Headers(response.headers);
-  headers.set("Access-Control-Allow-Origin", "*");
+  headers.set("Access-Control-Allow-Origin", "https://admin.relentlessbillionaire.com");
+  headers.set("Access-Control-Allow-Credentials", "true");
+  headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
   headers.set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
   return new Response(response.body, { status: response.status, headers });
 }

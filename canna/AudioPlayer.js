@@ -20,7 +20,7 @@ const AudioPlayer = ({
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
 
-  const discountedPrice = price * (1 - membershipDiscount);
+  const discountedPrice = price != null ? price * (1 - membershipDiscount) : 0;
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -51,6 +51,7 @@ const AudioPlayer = ({
 
   const togglePlay = () => {
     const audio = audioRef.current;
+    if (!audio) return;
     if (audio.paused) {
       audio.play();
       setIsPlaying(true);
@@ -62,6 +63,7 @@ const AudioPlayer = ({
 
   const handleSeek = (e) => {
     const audio = audioRef.current;
+    if (!audio) return;
     const seekTime = (e.target.value / 100) * duration;
     audio.currentTime = seekTime;
     setCurrentTime(seekTime);
@@ -69,6 +71,7 @@ const AudioPlayer = ({
 
   const handleVolumeChange = (e) => {
     const audio = audioRef.current;
+    if (!audio) return;
     const newVolume = e.target.value;
     audio.volume = newVolume;
     setVolume(newVolume);
@@ -77,6 +80,7 @@ const AudioPlayer = ({
 
   const toggleMute = () => {
     const audio = audioRef.current;
+    if (!audio) return;
     audio.muted = !audio.muted;
     setIsMuted(audio.muted);
   };

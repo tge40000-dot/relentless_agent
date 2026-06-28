@@ -28,7 +28,7 @@ function generateId() {
 // Expected bindings:
 // KV: ADMIN_AUTH (CONTENT, SETTINGS, METRICS, SESSIONS - using ADMIN_AUTH as fallback)
 // R2: MEDIA_BUCKET
-// ENV: STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, TELNYX_API_KEY, RESEND_API_KEY, EMAIL_FROM, ADMIN_EMAIL
+// ENV: STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, TELNYX_API_KEY, TELNYX_FROM, RESEND_API_KEY, EMAIL_FROM, ADMIN_EMAIL, R2_PUBLIC_URL
 
 // Fallback KV namespace helpers for operational system
 const getKV = (env, binding) => env[binding] || env.ADMIN_AUTH;
@@ -37,6 +37,12 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const { pathname } = url;
+
+    // Check request size limit (10MB max)
+    const contentLength = request.headers.get('Content-Length');
+    if (contentLength && parseInt(contentLength) > 10 * 1024 * 1024) {
+      return json({ error: "Request body too large. Maximum size is 10MB." }, 413);
+    }
 
     // Ensure KV bindings exist (use ADMIN_AUTH as fallback)
     env.CONTENT = getKV(env, 'CONTENT');
@@ -47,6 +53,14 @@ export default {
     // Validate KV and R2 bindings (only check for configured ones)
     if (!env.ADMIN_AUTH || !env.MEDIA_BUCKET) {
       return json({ error: "Missing required bindings (ADMIN_AUTH, MEDIA_BUCKET)" }, 500);
+    }
+
+    // Validate specialized worker bindings
+    const requiredWorkers = ['MEDIA_WORKER', 'BEATS_WORKER', 'AI_WORKER', 'DASHBOARD_WORKER', 'OPS_WORKER'];
+    for (const worker of requiredWorkers) {
+      if (!env[worker]) {
+        return json({ error: `Missing required worker binding: ${worker}` }, 500);
+      }
     }
 
     // CORS preflight
@@ -61,26 +75,31 @@ export default {
 
     // Route to specialized workers (hybrid architecture)
     if (url.pathname.startsWith("/api/media/")) {
+      if (!env.MEDIA_WORKER) return json({ error: "MEDIA_WORKER not configured" }, 500);
       url.pathname = url.pathname.replace("/api/media", "");
       return env.MEDIA_WORKER.fetch(new Request(url, request));
     }
 
     if (url.pathname.startsWith("/api/beats/")) {
+      if (!env.BEATS_WORKER) return json({ error: "BEATS_WORKER not configured" }, 500);
       url.pathname = url.pathname.replace("/api/beats", "");
       return env.BEATS_WORKER.fetch(new Request(url, request));
     }
 
     if (url.pathname.startsWith("/api/ai/")) {
+      if (!env.AI_WORKER) return json({ error: "AI_WORKER not configured" }, 500);
       url.pathname = url.pathname.replace("/api/ai", "");
       return env.AI_WORKER.fetch(new Request(url, request));
     }
 
     if (url.pathname.startsWith("/api/dashboard/")) {
+      if (!env.DASHBOARD_WORKER) return json({ error: "DASHBOARD_WORKER not configured" }, 500);
       url.pathname = url.pathname.replace("/api/dashboard", "");
       return env.DASHBOARD_WORKER.fetch(new Request(url, request));
     }
 
     if (url.pathname.startsWith("/api/ops/")) {
+      if (!env.OPS_WORKER) return json({ error: "OPS_WORKER not configured" }, 500);
       url.pathname = url.pathname.replace("/api/ops", "");
       return env.OPS_WORKER.fetch(new Request(url, request));
     }
@@ -155,6 +174,16 @@ function cors(response) {
   headers.set("Access-Control-Allow-Credentials", "true");
   headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
   headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  
+  // Security headers
+  headers.set("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://admin.relentlessbillionaire.com https://api.resend.com https://api.telnyx.com; frame-ancestors 'none';");
+  headers.set("X-Frame-Options", "DENY");
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("X-XSS-Protection", "1; mode=block");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  headers.set("Permissions-Policy", "geolocation=(), microphone=(), camera=()");
+  headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  
   return new Response(response.body, { status: response.status, headers });
 }
 
@@ -199,7 +228,9 @@ async function getAdmin(env) {
       email: env.ADMIN_EMAIL || "relentlessbillionaire@outlook.com",
       passwordHash,
       resetToken: null,
-      resetExpires: null
+      resetExpires: null,
+      failedLoginAttempts: 0,
+      lockoutUntil: null
     };
     await env.ADMIN_AUTH.put("admin", JSON.stringify(admin));
     return admin;
@@ -223,8 +254,45 @@ async function adminLogin(request, env) {
 
     if (email !== admin.email) return json({ error: "Invalid credentials" }, 401);
 
+    // Check if account is locked
+    if (admin.lockoutUntil && Date.now() < admin.lockoutUntil) {
+      const lockoutRemaining = Math.ceil((admin.lockoutUntil - Date.now()) / 60000);
+      return json({ error: `Account locked. Try again in ${lockoutRemaining} minutes.` }, 429);
+    }
+
     const ok = await verifyPassword(password, admin.passwordHash);
-    if (!ok) return json({ error: "Invalid credentials" }, 401);
+    if (!ok) {
+      // Increment failed attempts
+      admin.failedLoginAttempts = (admin.failedLoginAttempts || 0) + 1;
+      
+      // Lock account after 5 failed attempts for 15 minutes
+      if (admin.failedLoginAttempts >= 5) {
+        admin.lockoutUntil = Date.now() + 15 * 60 * 1000;
+        await saveAdmin(env, admin);
+        return json({ error: "Too many failed attempts. Account locked for 15 minutes." }, 429);
+      }
+      
+      await saveAdmin(env, admin);
+      const attemptsRemaining = 5 - admin.failedLoginAttempts;
+      return json({ error: `Invalid credentials. ${attemptsRemaining} attempts remaining.` }, 401);
+    }
+
+    // Reset failed attempts on successful login
+    admin.failedLoginAttempts = 0;
+    admin.lockoutUntil = null;
+    await saveAdmin(env, admin);
+
+    // Session rotation: invalidate existing sessions for this user
+    const existingSessions = await env.SESSIONS.list({ prefix: "" });
+    for (const key of existingSessions.keys) {
+      const sessionData = await env.SESSIONS.get(key.name);
+      if (sessionData) {
+        const session = JSON.parse(sessionData);
+        if (session.email === admin.email) {
+          await env.SESSIONS.delete(key.name);
+        }
+      }
+    }
 
     const sessionToken = generateId();
     const expiresAt = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
@@ -232,16 +300,21 @@ async function adminLogin(request, env) {
     // Store session in KV
     await env.SESSIONS.put(sessionToken, JSON.stringify({
       email: admin.email,
-      expiresAt
+      expiresAt,
+      createdAt: Date.now()
     }), {
       expirationTtl: 86400 // 24 hours
     });
+
+    // Check if request is HTTPS before setting Secure flag
+    const isSecure = url.protocol === 'https:';
+    const secureFlag = isSecure ? 'Secure; ' : '';
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Set-Cookie": `session=${sessionToken}; HttpOnly; Secure; Path=/; Max-Age=86400; SameSite=Lax` 
+        "Set-Cookie": `session=${sessionToken}; HttpOnly; ${secureFlag}Path=/; Max-Age=86400; SameSite=Lax`
       }
     });
   } catch (error) {
@@ -252,6 +325,7 @@ async function adminLogin(request, env) {
 
 async function adminLogout(request, env) {
   try {
+    const url = new URL(request.url);
     const cookie = request.headers.get("Cookie") || "";
     const sessionMatch = cookie.match(/session=([^;]+)/);
     
@@ -260,11 +334,15 @@ async function adminLogout(request, env) {
       await env.SESSIONS.delete(sessionToken);
     }
 
+    // Check if request is HTTPS before setting Secure flag
+    const isSecure = url.protocol === 'https:';
+    const secureFlag = isSecure ? 'Secure; ' : '';
+
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Set-Cookie": "session=; HttpOnly; Secure; Path=/; Max-Age=0; SameSite=Lax"
+        "Set-Cookie": `session=; HttpOnly; ${secureFlag}Path=/; Max-Age=0; SameSite=Lax`
       }
     });
   } catch (error) {
@@ -295,6 +373,9 @@ async function requestPasswordReset(request, env) {
     admin.resetExpires = expires;
     await saveAdmin(env, admin);
 
+    // Sanitize email address to prevent XSS
+    const sanitizedEmail = admin.email.replace(/[<>]/g, '');
+
     const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -303,7 +384,7 @@ async function requestPasswordReset(request, env) {
       },
       body: JSON.stringify({
         from: env.EMAIL_FROM,
-        to: admin.email,
+        to: sanitizedEmail,
         subject: "Relentless Billionaire Admin Password Reset",
         html: `
           <p>You requested a password reset.</p>
@@ -328,6 +409,26 @@ async function requestPasswordReset(request, env) {
   }
 }
 
+// Password validation helper
+function validatePassword(password) {
+  if (password.length < 8) {
+    return { valid: false, error: "Password must be at least 8 characters" };
+  }
+  if (!/[A-Z]/.test(password)) {
+    return { valid: false, error: "Password must contain at least one uppercase letter" };
+  }
+  if (!/[a-z]/.test(password)) {
+    return { valid: false, error: "Password must contain at least one lowercase letter" };
+  }
+  if (!/[0-9]/.test(password)) {
+    return { valid: false, error: "Password must contain at least one number" };
+  }
+  if (!/[^A-Za-z0-9]/.test(password)) {
+    return { valid: false, error: "Password must contain at least one special character" };
+  }
+  return { valid: true };
+}
+
 async function confirmPasswordReset(request, env) {
   try {
     const { token, newPassword } = await request.json();
@@ -336,8 +437,9 @@ async function confirmPasswordReset(request, env) {
       return json({ error: "Token and new password required" }, 400);
     }
 
-    if (newPassword.length < 8) {
-      return json({ error: "Password must be at least 8 characters" }, 400);
+    const passwordValidation = validatePassword(newPassword);
+    if (!passwordValidation.valid) {
+      return json({ error: passwordValidation.error }, 400);
     }
 
     const admin = await getAdmin(env);
@@ -350,10 +452,14 @@ async function confirmPasswordReset(request, env) {
       return json({ error: "Token expired" }, 400);
     }
 
-    const passwordHash = await hashPassword(newPassword);
-    admin.passwordHash = passwordHash;
+    // Invalidate token immediately before password change
     admin.resetToken = null;
     admin.resetExpires = null;
+    await saveAdmin(env, admin);
+
+    const passwordHash = await hashPassword(newPassword);
+    admin.passwordHash = passwordHash;
+    admin.failedLoginAttempts = 0; // Reset failed attempts on password change
 
     await saveAdmin(env, admin);
 
@@ -417,12 +523,14 @@ async function handleAdminSecure(request, env) {
   return json({ error: "Unknown admin secure route" }, 404);
 }
 
+// Valid collections for content management
+const VALID_COLLECTIONS = ["artists", "services", "vendors", "events", "memberships", "bookings", "beats"];
+
 async function handleContentCRUD(request, env, collection) {
   const keyPrefix = `content:${collection}:`;
 
   // Validate collection name
-  const validCollections = ["artists", "services", "vendors", "events", "memberships", "bookings", "beats"];
-  if (!validCollections.includes(collection)) {
+  if (!VALID_COLLECTIONS.includes(collection)) {
     return json({ error: "Invalid collection" }, 400);
   }
 
@@ -529,8 +637,7 @@ async function handlePublic(request, env) {
   if (path.startsWith("/content/")) {
     const [, , collection] = path.split("/");
     
-    const validCollections = ["artists", "services", "vendors", "events", "memberships", "bookings", "beats"];
-    if (!validCollections.includes(collection)) {
+    if (!VALID_COLLECTIONS.includes(collection)) {
       return json({ error: "Invalid collection" }, 400);
     }
     
@@ -748,9 +855,16 @@ async function uploadMedia(request, env) {
       return json({ error: "File too large. Max size is 100MB." }, 400);
     }
 
-    // Generate unique filename
-    const ext = file.name.split(".").pop();
+    // Generate unique filename with proper extension validation
+    const parts = file.name.split(".");
+    const ext = parts.length > 1 ? parts.pop() : 'bin';
     const filename = `${generateId()}.${ext}`;
+    
+    // Sanitize original filename for storage
+    const sanitizedOriginalName = file.name
+      .replace(/[^a-zA-Z0-9._-]/g, '_')
+      .substring(0, 255);
+    
     const key = `${category}/${filename}`;
 
     // Upload to R2
@@ -761,11 +875,11 @@ async function uploadMedia(request, env) {
       id: generateId(),
       key,
       filename,
-      originalName: file.name,
+      originalName: sanitizedOriginalName,
       mimeType: file.type,
       size: file.size,
       category,
-      url: `https://0a7be075f32d9d615349825b83ab8fcb.r2.cloudflarestorage.com/rbb/${key}`,
+      url: `${env.R2_PUBLIC_URL || 'https://0a7be075f32d9d615349825b83ab8fcb.r2.cloudflarestorage.com/rbb'}/${key}`,
       createdAt: Date.now()
     };
 

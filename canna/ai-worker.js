@@ -77,11 +77,15 @@ async function handleOCRIngest(request, env) {
       createdAt: Date.now()
     };
 
-    // Add to AI queue
-    await env.RB_AI_QUEUE.put(`task:${task.id}`, JSON.stringify(task));
+    // Add to AI queue with 24-hour TTL
+    await env.RB_AI_QUEUE.put(`task:${task.id}`, JSON.stringify(task), {
+      expirationTtl: 86400 // 24 hours
+    });
 
-    // Also add to RB_TASKS for general task tracking
-    await env.RB_TASKS.put(`task:${task.id}`, JSON.stringify(task));
+    // Also add to RB_TASKS for general task tracking with 24-hour TTL
+    await env.RB_TASKS.put(`task:${task.id}`, JSON.stringify(task), {
+      expirationTtl: 86400 // 24 hours
+    });
 
     return json({ task, message: "OCR task queued for processing" });
   } catch (error) {
@@ -132,11 +136,15 @@ async function handleAddToQueue(request, env) {
       createdAt: Date.now()
     };
 
-    // Add to AI queue
-    await env.RB_AI_QUEUE.put(`task:${task.id}`, JSON.stringify(task));
+    // Add to AI queue with 24-hour TTL
+    await env.RB_AI_QUEUE.put(`task:${task.id}`, JSON.stringify(task), {
+      expirationTtl: 86400 // 24 hours
+    });
 
-    // Also add to RB_TASKS for general task tracking
-    await env.RB_TASKS.put(`task:${task.id}`, JSON.stringify(task));
+    // Also add to RB_TASKS for general task tracking with 24-hour TTL
+    await env.RB_TASKS.put(`task:${task.id}`, JSON.stringify(task), {
+      expirationTtl: 86400 // 24 hours
+    });
 
     return json({ task });
   } catch (error) {
@@ -162,11 +170,15 @@ async function handleGenerate(request, env) {
       createdAt: Date.now()
     };
 
-    // Add to AI queue
-    await env.RB_AI_QUEUE.put(`task:${task.id}`, JSON.stringify(task));
+    // Add to AI queue with 24-hour TTL
+    await env.RB_AI_QUEUE.put(`task:${task.id}`, JSON.stringify(task), {
+      expirationTtl: 86400 // 24 hours
+    });
 
-    // Also add to RB_TASKS for general task tracking
-    await env.RB_TASKS.put(`task:${task.id}`, JSON.stringify(task));
+    // Also add to RB_TASKS for general task tracking with 24-hour TTL
+    await env.RB_TASKS.put(`task:${task.id}`, JSON.stringify(task), {
+      expirationTtl: 86400 // 24 hours
+    });
 
     return json({ task, message: "Generation task queued" });
   } catch (error) {
@@ -193,18 +205,37 @@ async function handleProcess(request, env) {
     // Update task status to processing
     task.status = "processing";
     task.processedAt = Date.now();
-    await env.RB_AI_QUEUE.put(`task:${taskId}`, JSON.stringify(task));
-    await env.RB_TASKS.put(`task:${taskId}`, JSON.stringify(task));
+    await env.RB_AI_QUEUE.put(`task:${taskId}`, JSON.stringify(task), {
+      expirationTtl: 86400 // 24 hours
+    });
+    await env.RB_TASKS.put(`task:${taskId}`, JSON.stringify(task), {
+      expirationTtl: 86400 // 24 hours
+    });
 
     // In production, this would call external AI APIs
-    // For now, simulate processing
-    setTimeout(async () => {
+    // For now, simulate processing with proper error handling
+    try {
       task.status = "completed";
       task.completedAt = Date.now();
       task.output = { message: "Processing completed - integrate with external AI API" };
-      await env.RB_AI_QUEUE.put(`task:${taskId}`, JSON.stringify(task));
-      await env.RB_TASKS.put(`task:${taskId}`, JSON.stringify(task));
-    }, 1000);
+      await env.RB_AI_QUEUE.put(`task:${taskId}`, JSON.stringify(task), {
+        expirationTtl: 86400 // 24 hours
+      });
+      await env.RB_TASKS.put(`task:${taskId}`, JSON.stringify(task), {
+        expirationTtl: 86400 // 24 hours
+      });
+    } catch (error) {
+      console.error("Task processing error:", error);
+      task.status = "failed";
+      task.error = error.message;
+      task.completedAt = Date.now();
+      await env.RB_AI_QUEUE.put(`task:${taskId}`, JSON.stringify(task), {
+        expirationTtl: 86400 // 24 hours
+      });
+      await env.RB_TASKS.put(`task:${taskId}`, JSON.stringify(task), {
+        expirationTtl: 86400 // 24 hours
+      });
+    }
 
     return json({ task, message: "Task processing started" });
   } catch (error) {
@@ -230,7 +261,9 @@ async function handleGetTask(taskId, env) {
 
 function cors(response) {
   const headers = new Headers(response.headers);
-  headers.set("Access-Control-Allow-Origin", "*");
+  headers.set("Access-Control-Allow-Origin", "https://admin.relentlessbillionaire.com");
+  headers.set("Access-Control-Allow-Credentials", "true");
+  headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
   headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   return new Response(response.body, { status: response.status, headers });
 }

@@ -3,6 +3,11 @@
 
 import React, { useState, useEffect } from 'react';
 
+// Helper function to check if badge exists
+function currentBadge(badge) {
+  return badge && badge.text && badge.type;
+}
+
 const AnimatedBanner = ({ 
   banners = [], 
   autoRotate = true, 
@@ -397,10 +402,5 @@ const AnimatedBanner = ({
     </div>
   );
 };
-
-// Helper function to check if badge exists
-function currentBadge(badge) {
-  return badge && badge.text && badge.type;
-}
 
 export default AnimatedBanner;
