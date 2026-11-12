@@ -1,0 +1,14 @@
+
+# Secrets, personal data and runtime output: never commit
+.env
+*.env
+!*.env.example
+config/.env
+leads_*.json
+logs/
+deploy-out*.txt
+deploy-output.txt
+.wrangler/
+**/.wrangler/
+venv/
+__pycache__/
